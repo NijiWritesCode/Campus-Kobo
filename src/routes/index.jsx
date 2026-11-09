@@ -5,12 +5,18 @@ import AppShell from '@/components/layout/AppShell';
 import AdminShell from '@/components/layout/AdminShell';
 import ProtectedRoute from '@/components/common/ProtectedRoute';
 
-// Auth Pages (eagerly loaded for fast first load)
+// Auth Pages (eagerly loaded)
 import WelcomePage from '@/features/auth/pages/WelcomePage';
 import RegisterPage from '@/features/auth/pages/RegisterPage';
 import LoginPage from '@/features/auth/pages/LoginPage';
 import OTPVerifyPage from '@/features/auth/pages/OTPVerifyPage';
 import StudentVerificationPage from '@/features/verification/pages/StudentVerificationPage';
+
+// Discovery & Public Provider Pages (Phase 3)
+import HomePage from '@/features/discovery/pages/HomePage';
+import SearchPage from '@/features/discovery/pages/SearchPage';
+import CategoryPage from '@/features/discovery/pages/CategoryPage';
+import ProviderProfilePage from '@/features/provider-public/pages/ProviderProfilePage';
 import DesignSystemShowcase from '@/features/discovery/components/DesignSystemShowcase';
 
 export const router = createBrowserRouter([
@@ -29,14 +35,23 @@ export const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      { index: true, element: <DesignSystemShowcase /> },
+      { index: true, element: <HomePage /> },
+      { path: 'search', element: <SearchPage /> },
+      { path: 'categories/:categoryId', element: <CategoryPage /> },
+      { path: 'providers/:slug', element: <ProviderProfilePage /> },
       { path: 'verification', element: <StudentVerificationPage /> },
+      { path: 'showcase', element: <DesignSystemShowcase /> },
       {
-        path: 'search',
+        path: 'book/:variantId',
         element: (
-          <div className="py-8 text-center space-y-2">
-            <h2 className="text-xl font-bold font-display">Client Search</h2>
-            <p className="text-xs text-neutral-500">Coming in Phase 3: Discovery & Provider Profiles</p>
+          <div className="py-12 text-center space-y-3 max-w-md mx-auto">
+            <h2 className="text-xl font-bold font-display text-neutral-900">Booking Engine Ready</h2>
+            <p className="text-xs text-neutral-500">
+              Booking requests, date/time calendar scheduling, and checkout will be wired in Phase 4.
+            </p>
+            <a href="/app" className="inline-block py-2 px-4 rounded-xl bg-primary-500 text-white text-xs font-bold">
+              Back to Browse
+            </a>
           </div>
         ),
       },
