@@ -1,51 +1,54 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand Primary: Campus Kobo Energetic Warm Orange */
-  --color-primary-50: #fdf4f0;
-  --color-primary-100: #fbe6dd;
-  --color-primary-200: #f7c9b5;
-  --color-primary-300: #f2a487;
-  --color-primary-400: #ec7c56;
-  --color-primary-500: #e85d2f;
-  --color-primary-600: #d44a1e;
-  --color-primary-700: #b03b18;
-  --color-primary-800: #8d3117;
-  --color-primary-900: #742b16;
+  /* Brand Primary: High-Energy Burnt Sunset Orange (Vibrant, Premium) */
+  --color-primary-50: #fff7ed;
+  --color-primary-100: #ffedd5;
+  --color-primary-200: #fed7aa;
+  --color-primary-300: #fdba74;
+  --color-primary-400: #fb923c;
+  --color-primary-500: #f97316;
+  --color-primary-600: #ea580c;
+  --color-primary-700: #c2410c;
+  --color-primary-800: #9a3412;
+  --color-primary-900: #7c2d12;
+  --color-primary-950: #431407;
 
-  /* Brand Secondary: Trust Campus Emerald / Green */
-  --color-secondary-50: #f0f7f4;
-  --color-secondary-100: #d9ede3;
-  --color-secondary-200: #b5dbca;
-  --color-secondary-300: #85c2aa;
-  --color-secondary-400: #58a688;
-  --color-secondary-500: #3a8d6e;
-  --color-secondary-600: #2c7159;
-  --color-secondary-700: #255b49;
-  --color-secondary-800: #20493b;
-  --color-secondary-900: #1c3d32;
+  /* Brand Secondary: Emerald Trust (Deep, Assuring, Financial Security) */
+  --color-secondary-50: #ecfdf5;
+  --color-secondary-100: #d1fae5;
+  --color-secondary-200: #a7f3d0;
+  --color-secondary-300: #6ee7b7;
+  --color-secondary-400: #34d399;
+  --color-secondary-500: #10b981;
+  --color-secondary-600: #059669;
+  --color-secondary-700: #047857;
+  --color-secondary-800: #065f46;
+  --color-secondary-900: #064e3b;
+  --color-secondary-950: #022c22;
 
-  /* Brand Neutrals: Warm Greys for Campus Vibe */
-  --color-neutral-50: #f8f8f7;
-  --color-neutral-100: #f0efee;
-  --color-neutral-200: #e0deda;
-  --color-neutral-300: #cbc8c2;
-  --color-neutral-400: #b0aba3;
-  --color-neutral-500: #9b958c;
-  --color-neutral-600: #87807a;
-  --color-neutral-700: #706b66;
-  --color-neutral-800: #5d5955;
-  --color-neutral-900: #4d4a47;
-  --color-neutral-950: #292826;
+  /* Shadcn-Style Premium Zinc Neutrals */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f4f4f5;
+  --color-neutral-200: #e4e4e7;
+  --color-neutral-300: #d4d4d8;
+  --color-neutral-400: #a1a1aa;
+  --color-neutral-500: #71717a;
+  --color-neutral-600: #52525b;
+  --color-neutral-700: #3f3f46;
+  --color-neutral-800: #27272a;
+  --color-neutral-900: #18181b;
+  --color-neutral-950: #09090b;
 
   /* Typography */
   --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
 
-  /* Smooth radius defaults */
+  /* Radius */
   --radius-xl: 0.875rem;
   --radius-2xl: 1rem;
-  --radius-3xl: 1.25rem;
+  --radius-3xl: 1.35rem;
+  --radius-4xl: 1.75rem;
 }
 
 @layer base {
@@ -53,15 +56,22 @@
     border-color: var(--color-neutral-200, currentColor);
   }
 
+  html {
+    scroll-behavior: smooth;
+    text-rendering: optimizeLegibility;
+  }
+
   body {
     font-family: var(--font-sans);
-    background-color: var(--color-neutral-50);
+    background-color: #fafafa;
     color: var(--color-neutral-900);
     -webkit-tap-highlight-color: transparent;
+    overflow-x: hidden;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+    letter-spacing: -0.025em;
   }
 
   /* Modern Web Guidance: Native dialog modal scroll containment */
@@ -71,7 +81,61 @@
   dialog::backdrop {
     overflow: hidden;
     overscroll-behavior: contain;
-    background-color: rgba(41, 40, 38, 0.55);
-    backdrop-filter: blur(4px);
+    background-color: rgba(9, 9, 11, 0.65);
+    backdrop-filter: blur(8px);
   }
+}
+
+/* React Bits: Custom Utility Effects */
+@utility bg-grid-pattern {
+  background-image: radial-gradient(rgba(24, 24, 27, 0.08) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+@utility bg-aurora-glow {
+  background: radial-gradient(circle at 50% 0%, rgba(249, 115, 22, 0.12) 0%, rgba(16, 185, 129, 0.06) 45%, transparent 70%);
+}
+
+@utility text-gradient-primary {
+  background-image: linear-gradient(135deg, #ea580c 0%, #f97316 50%, #fb923c 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility text-gradient-dark {
+  background-image: linear-gradient(135deg, #09090b 0%, #27272a 60%, #52525b 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@utility glass-panel {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.02);
+}
+
+@utility glass-panel-dark {
+  background: rgba(18, 18, 20, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+}
+
+/* Shimmer Keyframe */
+@keyframes shimmer {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.animate-shimmer {
+  animation: shimmer 2.5s linear infinite;
 }

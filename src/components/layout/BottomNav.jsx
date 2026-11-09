@@ -29,40 +29,49 @@ export default function BottomNav({ variant = 'client' }) {
   const items = variant === 'provider' ? providerNavItems : clientNavItems;
 
   return (
-    <nav aria-label="Main Navigation" className="fixed bottom-0 inset-x-0 z-30 bg-white/95 backdrop-blur-md border-t border-neutral-200/90 pb-safe md:hidden shadow-lg">
-      <div className="grid grid-cols-4 h-16 max-w-md mx-auto px-2">
-        {items.map((item) => {
-          const Icon = item.icon;
-          return (
-            <NavLink
-              key={item.to}
-              to={item.to}
-              end={item.end}
-              className={({ isActive }) =>
-                cn(
-                  'flex flex-col items-center justify-center gap-1 text-[11px] font-semibold transition-colors focus:outline-none',
-                  isActive
-                    ? 'text-primary-600'
-                    : 'text-neutral-500 hover:text-neutral-900'
-                )
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  <div
-                    className={cn(
-                      'p-1 rounded-xl transition-all',
-                      isActive ? 'bg-primary-50 text-primary-600 scale-105' : ''
-                    )}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <span>{item.label}</span>
-                </>
-              )}
-            </NavLink>
-          );
-        })}
+    <nav
+      aria-label="Main Navigation"
+      className="fixed bottom-3 inset-x-0 z-40 px-4 md:hidden pointer-events-none"
+    >
+      <div className="max-w-xs mx-auto glass-panel-dark rounded-full p-1.5 shadow-[0_12px_36px_rgba(0,0,0,0.35)] pointer-events-auto">
+        <div className="grid grid-cols-4 items-center">
+          {items.map((item) => {
+            const Icon = item.icon;
+            return (
+              <NavLink
+                key={item.to}
+                to={item.to}
+                end={item.end}
+                className={({ isActive }) =>
+                  cn(
+                    'flex flex-col items-center justify-center py-1.5 px-2 rounded-full transition-all duration-200 select-none focus:outline-none',
+                    isActive
+                      ? 'text-white'
+                      : 'text-neutral-400 hover:text-neutral-200'
+                  )
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    <div
+                      className={cn(
+                        'relative p-1 rounded-full transition-all duration-200',
+                        isActive
+                          ? 'bg-primary-500 text-white shadow-[0_0_12px_rgba(249,115,22,0.6)] scale-105'
+                          : ''
+                      )}
+                    >
+                      <Icon className="w-4 h-4" />
+                    </div>
+                    <span className="text-[10px] font-medium tracking-tight mt-0.5">
+                      {item.label}
+                    </span>
+                  </>
+                )}
+              </NavLink>
+            );
+          })}
+        </div>
       </div>
     </nav>
   );

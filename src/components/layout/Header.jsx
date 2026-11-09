@@ -17,19 +17,19 @@ export default function Header({ variant = 'client' }) {
   };
 
   return (
-    <header className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-neutral-200/80 transition-shadow">
-      <div className="max-w-5xl mx-auto px-4 h-15 flex items-center justify-between gap-4">
+    <header className="sticky top-0 z-30 glass-panel border-b border-neutral-200/80 transition-shadow">
+      <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
         {/* Left: Brand Logo */}
         <Logo size="md" to={variant === 'provider' ? '/provider' : '/app'} />
 
         {/* Right Action Bar */}
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2 sm:gap-3">
           {/* Provider / Client Surface Switcher (If user is approved provider) */}
           {isProvider && (
             <Link
               to={variant === 'provider' ? '/app' : '/provider'}
               onClick={toggleRole}
-              className="hidden xs:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-neutral-100 hover:bg-neutral-200 text-neutral-800 transition-colors border border-neutral-200"
+              className="hidden xs:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-neutral-100 hover:bg-neutral-200 text-neutral-800 transition-colors border border-neutral-200 shadow-2xs hover:shadow-xs active:scale-[0.98]"
             >
               <ArrowLeftRight className="w-3.5 h-3.5 text-primary-600" />
               <span>{variant === 'provider' ? 'Switch to Buying' : 'Switch to Selling'}</span>
@@ -39,17 +39,17 @@ export default function Header({ variant = 'client' }) {
           {/* Notifications */}
           <Link
             to="/app/notifications"
-            className="relative p-2 rounded-xl text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 transition-colors focus:outline-none focus:ring-2 focus:ring-primary-500/20"
+            className="relative p-2.5 rounded-2xl text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500/20 active:scale-95"
             aria-label="Notifications"
           >
             <Bell className="w-5 h-5" />
-            <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary-500 animate-pulse" />
+            <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary-500 ring-2 ring-white animate-pulse" />
           </Link>
 
           {/* Profile Avatar / Menu */}
           <Link
             to={variant === 'provider' ? '/provider/profile' : '/app/profile'}
-            className="flex items-center gap-2 p-1 rounded-full hover:ring-2 hover:ring-primary-400/40 transition-all focus:outline-none"
+            className="flex items-center gap-2 p-1 rounded-full hover:ring-2 hover:ring-primary-400/50 transition-all focus:outline-none active:scale-95"
             aria-label="My Account"
           >
             {user ? (
@@ -59,7 +59,7 @@ export default function Header({ variant = 'client' }) {
                 verified={user.verificationStatus === 'APPROVED'}
               />
             ) : (
-              <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-600">
+              <div className="w-8 h-8 rounded-full bg-neutral-100 flex items-center justify-center text-neutral-600 border border-neutral-200">
                 <User className="w-4 h-4" />
               </div>
             )}

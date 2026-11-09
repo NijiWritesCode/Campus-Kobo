@@ -1,9 +1,6 @@
 import { cn } from '@/lib/cn';
 import Spinner from './Spinner';
 
-/**
- * Reusable Button component with multiple variants, loading states, and accessible feedback.
- */
 export default function Button({
   children,
   variant = 'primary',
@@ -18,27 +15,29 @@ export default function Button({
   ...props
 }) {
   const baseStyles =
-    'relative inline-flex items-center justify-center font-semibold transition-all duration-150 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none cursor-pointer';
+    'relative inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none cursor-pointer select-none';
 
   const variants = {
     primary:
-      'bg-primary-500 hover:bg-primary-600 text-white shadow-xs focus-visible:ring-primary-500 shadow-primary-500/20 active:bg-primary-700',
+      'bg-primary-600 hover:bg-primary-500 text-white shadow-[0_2px_10px_rgba(234,88,12,0.25),inset_0_1px_0_0_rgba(255,255,255,0.2)] focus-visible:ring-primary-500 active:bg-primary-700 font-semibold',
     secondary:
-      'bg-secondary-500 hover:bg-secondary-600 text-white shadow-xs focus-visible:ring-secondary-500 shadow-secondary-500/20 active:bg-secondary-700',
+      'bg-secondary-600 hover:bg-secondary-500 text-white shadow-[0_2px_10px_rgba(5,150,105,0.25),inset_0_1px_0_0_rgba(255,255,255,0.2)] focus-visible:ring-secondary-500 active:bg-secondary-700 font-semibold',
     outline:
-      'border-2 border-neutral-300 hover:border-neutral-400 bg-white hover:bg-neutral-50 text-neutral-800 focus-visible:ring-neutral-400',
+      'border border-neutral-200 hover:border-neutral-300 bg-white hover:bg-neutral-50/80 text-neutral-800 shadow-2xs focus-visible:ring-neutral-400 font-medium',
     ghost:
-      'bg-transparent hover:bg-neutral-100 text-neutral-700 hover:text-neutral-900 focus-visible:ring-neutral-300',
+      'bg-transparent hover:bg-neutral-100/90 text-neutral-600 hover:text-neutral-900 focus-visible:ring-neutral-300 font-medium',
     danger:
-      'bg-red-600 hover:bg-red-700 text-white shadow-xs focus-visible:ring-red-500 shadow-red-500/20 active:bg-red-800',
+      'bg-red-600 hover:bg-red-500 text-white shadow-[0_2px_10px_rgba(220,38,38,0.25),inset_0_1px_0_0_rgba(255,255,255,0.2)] focus-visible:ring-red-500 active:bg-red-700 font-semibold',
     subtle:
-      'bg-primary-50 hover:bg-primary-100 text-primary-700 focus-visible:ring-primary-400 border border-primary-200/60',
+      'bg-neutral-100 hover:bg-neutral-200/80 text-neutral-800 font-medium border border-neutral-200/60',
+    dark:
+      'bg-neutral-950 hover:bg-neutral-900 text-white shadow-[0_2px_10px_rgba(9,9,11,0.25),inset_0_1px_0_0_rgba(255,255,255,0.15)] focus-visible:ring-neutral-700 font-semibold',
   };
 
   const sizes = {
-    sm: 'text-xs px-3 py-1.5 rounded-lg gap-1.5',
-    md: 'text-sm px-4 py-2.5 rounded-xl gap-2',
-    lg: 'text-base px-6 py-3.5 rounded-2xl gap-2.5',
+    sm: 'h-8 px-3 text-xs rounded-lg gap-1.5',
+    md: 'h-10 px-4 text-xs sm:text-sm rounded-xl gap-2',
+    lg: 'h-12 px-6 text-sm sm:text-base rounded-2xl gap-2.5',
   };
 
   return (
@@ -59,7 +58,7 @@ export default function Button({
           size={size === 'sm' ? 'sm' : 'md'}
           className={cn(
             variant === 'outline' || variant === 'ghost'
-              ? 'text-primary-500'
+              ? 'text-primary-600'
               : 'text-white'
           )}
         />

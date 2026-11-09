@@ -2,13 +2,6 @@ import { forwardRef, useState, useId } from 'react';
 import { Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/cn';
 
-/**
- * Accessible Input component adhering to modern web guidance:
- * - Proper label/id connection
- * - Non-color visual indicators for errors
- * - Password reveal toggle with accessible label
- * - Ref forwarding for react-hook-form
- */
 const Input = forwardRef(function Input(
   {
     label,
@@ -45,7 +38,7 @@ const Input = forwardRef(function Input(
         <div className="flex items-center justify-between">
           <label
             htmlFor={id}
-            className="block text-xs font-semibold text-neutral-700 tracking-wide"
+            className="block text-xs font-semibold text-neutral-800 tracking-normal"
           >
             {label}
             {required && <span className="text-primary-600 ml-1" aria-hidden="true">*</span>}
@@ -75,14 +68,14 @@ const Input = forwardRef(function Input(
           aria-errormessage={error ? errorId : undefined}
           aria-describedby={hint ? hintId : undefined}
           className={cn(
-            'block w-full rounded-xl border bg-white px-3.5 py-2.5 text-sm text-neutral-900 transition-colors placeholder:text-neutral-400',
-            'focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500',
-            'disabled:bg-neutral-100 disabled:text-neutral-500 disabled:cursor-not-allowed',
+            'flex h-11 w-full rounded-xl border bg-white px-3.5 py-2 text-sm text-neutral-900 shadow-2xs transition-all placeholder:text-neutral-400',
+            'focus:outline-none focus:border-primary-500 focus:ring-3 focus:ring-primary-500/15',
+            'disabled:bg-neutral-100 disabled:text-neutral-400 disabled:cursor-not-allowed',
             icon ? 'pl-10' : '',
             isPassword ? 'pr-11' : '',
             error
               ? 'border-red-400 bg-red-50/20 text-red-900 focus:border-red-500 focus:ring-red-500/20'
-              : 'border-neutral-300 hover:border-neutral-400',
+              : 'border-neutral-200 hover:border-neutral-300',
             inputClassName
           )}
           {...props}
@@ -106,7 +99,7 @@ const Input = forwardRef(function Input(
       </div>
 
       {hint && !error && (
-        <p id={hintId} className="text-xs text-neutral-500">
+        <p id={hintId} className="text-[11px] text-neutral-500">
           {hint}
         </p>
       )}
