@@ -1,85 +1,162 @@
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter, Navigate } from 'react-router-dom';
+
+// Layouts
+import AppShell from '@/components/layout/AppShell';
+import AdminShell from '@/components/layout/AdminShell';
+import ProtectedRoute from '@/components/common/ProtectedRoute';
+
+// Auth Pages (eagerly loaded for fast first load)
+import WelcomePage from '@/features/auth/pages/WelcomePage';
+import RegisterPage from '@/features/auth/pages/RegisterPage';
+import LoginPage from '@/features/auth/pages/LoginPage';
+import OTPVerifyPage from '@/features/auth/pages/OTPVerifyPage';
+import StudentVerificationPage from '@/features/verification/pages/StudentVerificationPage';
+import DesignSystemShowcase from '@/features/discovery/components/DesignSystemShowcase';
 
 export const router = createBrowserRouter([
+  // Public Landing & Authentication routes
+  { path: '/', element: <WelcomePage /> },
+  { path: '/register', element: <RegisterPage /> },
+  { path: '/login', element: <LoginPage /> },
+  { path: '/verify-otp', element: <OTPVerifyPage /> },
+
+  // Client Application Surface (Protected)
   {
-    path: '/',
+    path: '/app',
     element: (
-      <main className="min-h-screen flex flex-col justify-between p-6 sm:p-12 max-w-4xl mx-auto">
-        <header className="flex items-center justify-between border-b border-neutral-200 pb-4">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-primary-600 to-primary-400 flex items-center justify-center text-white font-bold text-lg shadow-sm">
-              CK
-            </div>
-            <div>
-              <h1 className="text-xl font-bold tracking-tight text-neutral-900 font-display">
-                Campus <span className="text-primary-600">Kobo</span>
-              </h1>
-              <p className="text-xs text-neutral-500 font-medium">Campus Skills Marketplace</p>
-            </div>
-          </div>
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-            Phase 1 Setup Active
-          </span>
-        </header>
-
-        <section className="my-12 space-y-6">
-          <div className="inline-block px-3 py-1 bg-primary-50 border border-primary-200 text-primary-700 rounded-lg text-xs font-semibold uppercase tracking-wider">
-            Phase 1: Project Setup & Installation
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-neutral-900">
-            Foundation Ready for Campus Kobo
-          </h2>
-          <p className="text-neutral-600 text-base sm:text-lg max-w-2xl leading-relaxed">
-            The mobile-first PWA frontend environment has been scaffolded and configured.
-            Tailwind CSS v4 with custom campus palette, Zustand stores, React Router,
-            TanStack Query, and PWA manifest are initialized and verified.
-          </p>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 pt-4">
-            <div className="p-4 rounded-2xl bg-white border border-neutral-200 shadow-xs">
-              <div className="text-xs font-bold text-neutral-400 uppercase tracking-wider">Stack Core</div>
-              <div className="mt-1 font-semibold text-neutral-900">React 19 + JSX</div>
-              <p className="mt-1 text-xs text-neutral-500">Fast modern build powered by Vite 8</p>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-white border border-neutral-200 shadow-xs">
-              <div className="text-xs font-bold text-neutral-400 uppercase tracking-wider">Styling</div>
-              <div className="mt-1 font-semibold text-neutral-900">Tailwind CSS v4 @theme</div>
-              <p className="mt-1 text-xs text-neutral-500">Warm orange & trust emerald palette</p>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-white border border-neutral-200 shadow-xs">
-              <div className="text-xs font-bold text-neutral-400 uppercase tracking-wider">State & Data</div>
-              <div className="mt-1 font-semibold text-neutral-900">Zustand + TanStack Query</div>
-              <p className="mt-1 text-xs text-neutral-500">Lightweight auth & server state caching</p>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-white border border-neutral-200 shadow-xs">
-              <div className="text-xs font-bold text-neutral-400 uppercase tracking-wider">Currency</div>
-              <div className="mt-1 font-semibold text-neutral-900">Nigerian Naira (₦)</div>
-              <p className="mt-1 text-xs text-neutral-500">Integer kobo precision & auto-formatting</p>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-white border border-neutral-200 shadow-xs">
-              <div className="text-xs font-bold text-neutral-400 uppercase tracking-wider">Validation</div>
-              <div className="mt-1 font-semibold text-neutral-900">Zod + React Hook Form</div>
-              <p className="mt-1 text-xs text-neutral-500">Type-safe schemas for bookings & auth</p>
-            </div>
-
-            <div className="p-4 rounded-2xl bg-white border border-neutral-200 shadow-xs">
-              <div className="text-xs font-bold text-neutral-400 uppercase tracking-wider">Next Step</div>
-              <div className="mt-1 font-semibold text-primary-600">Phase 2: Design System & Auth</div>
-              <p className="mt-1 text-xs text-neutral-500">UI primitives, layout shells, auth pages</p>
-            </div>
-          </div>
-        </section>
-
-        <footer className="border-t border-neutral-200 pt-6 text-xs text-neutral-500 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <span>Campus Kobo MVP &copy; {new Date().getFullYear()}</span>
-          <span>Verified Student Marketplace</span>
-        </footer>
-      </main>
+      <ProtectedRoute>
+        <AppShell variant="client" />
+      </ProtectedRoute>
     ),
+    children: [
+      { index: true, element: <DesignSystemShowcase /> },
+      { path: 'verification', element: <StudentVerificationPage /> },
+      {
+        path: 'search',
+        element: (
+          <div className="py-8 text-center space-y-2">
+            <h2 className="text-xl font-bold font-display">Client Search</h2>
+            <p className="text-xs text-neutral-500">Coming in Phase 3: Discovery & Provider Profiles</p>
+          </div>
+        ),
+      },
+      {
+        path: 'bookings',
+        element: (
+          <div className="py-8 text-center space-y-2">
+            <h2 className="text-xl font-bold font-display">My Bookings</h2>
+            <p className="text-xs text-neutral-500">Coming in Phase 4: Booking & Checkout Engine</p>
+          </div>
+        ),
+      },
+      {
+        path: 'profile',
+        element: (
+          <div className="py-8 text-center space-y-2">
+            <h2 className="text-xl font-bold font-display">My Profile & Account</h2>
+            <p className="text-xs text-neutral-500">Coming in Phase 4</p>
+          </div>
+        ),
+      },
+      {
+        path: 'notifications',
+        element: (
+          <div className="py-8 text-center space-y-2">
+            <h2 className="text-xl font-bold font-display">Notifications</h2>
+            <p className="text-xs text-neutral-500">Coming in Phase 4</p>
+          </div>
+        ),
+      },
+    ],
   },
+
+  // Provider Application Surface (Protected - Provider Role)
+  {
+    path: '/provider',
+    element: (
+      <ProtectedRoute role="PROVIDER">
+        <AppShell variant="provider" />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: (
+          <div className="py-8 text-center space-y-2">
+            <h2 className="text-xl font-bold font-display">Provider Dashboard</h2>
+            <p className="text-xs text-neutral-500">Coming in Phase 5: Provider Dashboard & Services</p>
+          </div>
+        ),
+      },
+      {
+        path: 'services',
+        element: (
+          <div className="py-8 text-center space-y-2">
+            <h2 className="text-xl font-bold font-display">Service Management</h2>
+            <p className="text-xs text-neutral-500">Coming in Phase 5</p>
+          </div>
+        ),
+      },
+      {
+        path: 'bookings',
+        element: (
+          <div className="py-8 text-center space-y-2">
+            <h2 className="text-xl font-bold font-display">Provider Bookings & PIN Input</h2>
+            <p className="text-xs text-neutral-500">Coming in Phase 5</p>
+          </div>
+        ),
+      },
+      {
+        path: 'earnings',
+        element: (
+          <div className="py-8 text-center space-y-2">
+            <h2 className="text-xl font-bold font-display">Provider Earnings & Payouts</h2>
+            <p className="text-xs text-neutral-500">Coming in Phase 5</p>
+          </div>
+        ),
+      },
+    ],
+  },
+
+  // Admin Application Surface (Protected - Admin Role)
+  {
+    path: '/admin',
+    element: (
+      <ProtectedRoute role="ADMIN">
+        <AdminShell />
+      </ProtectedRoute>
+    ),
+    children: [
+      {
+        index: true,
+        element: (
+          <div className="py-8 text-center space-y-2">
+            <h2 className="text-xl font-bold font-display text-neutral-900">Admin Portal Overview</h2>
+            <p className="text-xs text-neutral-500">Coming in Phase 6: Admin Dashboard & Dispute Resolution</p>
+          </div>
+        ),
+      },
+      {
+        path: 'verifications',
+        element: (
+          <div className="py-8 text-center space-y-2">
+            <h2 className="text-xl font-bold font-display text-neutral-900">Student Verifications Queue</h2>
+            <p className="text-xs text-neutral-500">Coming in Phase 6</p>
+          </div>
+        ),
+      },
+      {
+        path: 'disputes',
+        element: (
+          <div className="py-8 text-center space-y-2">
+            <h2 className="text-xl font-bold font-display text-neutral-900">Disputes & Claims</h2>
+            <p className="text-xs text-neutral-500">Coming in Phase 6</p>
+          </div>
+        ),
+      },
+    ],
+  },
+
+  // Catch-all redirect to welcome landing
+  { path: '*', element: <Navigate to="/" replace /> },
 ]);

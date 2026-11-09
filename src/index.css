@@ -63,4 +63,15 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
   }
+
+  /* Modern Web Guidance: Native dialog modal scroll containment */
+  dialog:modal {
+    overscroll-behavior: contain;
+  }
+  dialog::backdrop {
+    overflow: hidden;
+    overscroll-behavior: contain;
+    background-color: rgba(41, 40, 38, 0.55);
+    backdrop-filter: blur(4px);
+  }
 }
