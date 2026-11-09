@@ -1,0 +1,66 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand Primary: Campus Kobo Energetic Warm Orange */
+  --color-primary-50: #fdf4f0;
+  --color-primary-100: #fbe6dd;
+  --color-primary-200: #f7c9b5;
+  --color-primary-300: #f2a487;
+  --color-primary-400: #ec7c56;
+  --color-primary-500: #e85d2f;
+  --color-primary-600: #d44a1e;
+  --color-primary-700: #b03b18;
+  --color-primary-800: #8d3117;
+  --color-primary-900: #742b16;
+
+  /* Brand Secondary: Trust Campus Emerald / Green */
+  --color-secondary-50: #f0f7f4;
+  --color-secondary-100: #d9ede3;
+  --color-secondary-200: #b5dbca;
+  --color-secondary-300: #85c2aa;
+  --color-secondary-400: #58a688;
+  --color-secondary-500: #3a8d6e;
+  --color-secondary-600: #2c7159;
+  --color-secondary-700: #255b49;
+  --color-secondary-800: #20493b;
+  --color-secondary-900: #1c3d32;
+
+  /* Brand Neutrals: Warm Greys for Campus Vibe */
+  --color-neutral-50: #f8f8f7;
+  --color-neutral-100: #f0efee;
+  --color-neutral-200: #e0deda;
+  --color-neutral-300: #cbc8c2;
+  --color-neutral-400: #b0aba3;
+  --color-neutral-500: #9b958c;
+  --color-neutral-600: #87807a;
+  --color-neutral-700: #706b66;
+  --color-neutral-800: #5d5955;
+  --color-neutral-900: #4d4a47;
+  --color-neutral-950: #292826;
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+
+  /* Smooth radius defaults */
+  --radius-xl: 0.875rem;
+  --radius-2xl: 1rem;
+  --radius-3xl: 1.25rem;
+}
+
+@layer base {
+  *, ::after, ::before, ::backdrop, ::file-selector-button {
+    border-color: var(--color-neutral-200, currentColor);
+  }
+
+  body {
+    font-family: var(--font-sans);
+    background-color: var(--color-neutral-50);
+    color: var(--color-neutral-900);
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
