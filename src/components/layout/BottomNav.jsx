@@ -30,48 +30,44 @@ export default function BottomNav({ variant = 'client' }) {
 
   return (
     <nav
-      aria-label="Main Navigation"
-      className="fixed bottom-3 inset-x-0 z-40 px-4 md:hidden pointer-events-none"
+      aria-label="Mobile Navigation"
+      className="fixed bottom-0 inset-x-0 z-40 bg-white border-t border-neutral-200 h-16 px-2 md:hidden safe-area-pb"
     >
-      <div className="max-w-xs mx-auto glass-panel-dark rounded-full p-1.5 shadow-[0_12px_36px_rgba(0,0,0,0.35)] pointer-events-auto">
-        <div className="grid grid-cols-4 items-center">
-          {items.map((item) => {
-            const Icon = item.icon;
-            return (
-              <NavLink
-                key={item.to}
-                to={item.to}
-                end={item.end}
-                className={({ isActive }) =>
-                  cn(
-                    'flex flex-col items-center justify-center py-1.5 px-2 rounded-full transition-all duration-200 select-none focus:outline-none',
-                    isActive
-                      ? 'text-white'
-                      : 'text-neutral-400 hover:text-neutral-200'
-                  )
-                }
-              >
-                {({ isActive }) => (
-                  <>
-                    <div
-                      className={cn(
-                        'relative p-1 rounded-full transition-all duration-200',
-                        isActive
-                          ? 'bg-primary-600 text-white shadow-[0_0_14px_rgba(16,185,129,0.7)] scale-105'
-                          : ''
-                      )}
-                    >
-                      <Icon className="w-4 h-4" />
-                    </div>
-                    <span className="text-[10px] font-medium tracking-tight mt-0.5">
-                      {item.label}
-                    </span>
-                  </>
-                )}
-              </NavLink>
-            );
-          })}
-        </div>
+      <div className="grid grid-cols-4 h-full items-center">
+        {items.map((item) => {
+          const Icon = item.icon;
+          return (
+            <NavLink
+              key={item.to}
+              to={item.to}
+              end={item.end}
+              className={({ isActive }) =>
+                cn(
+                  'flex flex-col items-center justify-center py-1 transition-colors select-none focus:outline-none',
+                  isActive
+                    ? 'text-emerald-700 font-bold'
+                    : 'text-neutral-500 hover:text-neutral-900 font-medium'
+                )
+              }
+            >
+              {({ isActive }) => (
+                <>
+                  <div
+                    className={cn(
+                      'p-1 rounded-lg transition-transform',
+                      isActive ? 'text-emerald-700 scale-105' : 'text-neutral-500'
+                    )}
+                  >
+                    <Icon className="w-5 h-5" />
+                  </div>
+                  <span className="text-[11px] leading-tight mt-0.5">
+                    {item.label}
+                  </span>
+                </>
+              )}
+            </NavLink>
+          );
+        })}
       </div>
     </nav>
   );

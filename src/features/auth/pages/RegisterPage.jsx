@@ -8,7 +8,6 @@ import Input from '@/components/ui/Input';
 import Select from '@/components/ui/Select';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
-import AuroraBackground from '@/components/react-bits/AuroraBackground';
 import { registerSchema } from '@/lib/validators';
 import { USER_ROLES } from '@/lib/constants';
 
@@ -74,31 +73,31 @@ export default function RegisterPage() {
   };
 
   return (
-    <AuroraBackground className="min-h-screen py-10 px-4 sm:px-6">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center space-y-3">
+    <div className="min-h-screen bg-neutral-50 flex flex-col justify-center py-8 px-4 sm:px-6">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center space-y-2">
         <Logo size="lg" to="/" />
-        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900 font-display">
+        <h1 className="text-2xl font-bold tracking-tight text-neutral-900 font-display">
           Create student account
         </h1>
-        <p className="text-xs sm:text-sm text-neutral-500 font-normal">
+        <p className="text-xs text-neutral-500 font-normal">
           Already registered?{' '}
-          <Link to="/login" className="font-bold text-primary-600 hover:text-primary-700">
+          <Link to="/login" className="font-bold text-purple-800 hover:text-purple-950">
             Sign in here
           </Link>
         </p>
       </div>
 
       <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-md">
-        <Card variant="elevated" padding="lg" className="border border-neutral-200/90 shadow-lg">
+        <Card variant="default" padding="lg" className="border border-neutral-200 shadow-xs">
           {/* Surface Intent Switcher with Segmented Control */}
-          <div className="mb-6 p-1 bg-neutral-100 rounded-2xl grid grid-cols-2 gap-1 text-center border border-neutral-200/80">
+          <div className="mb-6 p-1 bg-neutral-100 rounded-xl grid grid-cols-2 gap-1 text-center border border-neutral-200">
             <button
               type="button"
               onClick={() => setSelectedRole(USER_ROLES.CLIENT)}
-              className={`py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer ${
+              className={`py-2 text-xs font-bold rounded-lg transition-colors cursor-pointer ${
                 selectedRole === USER_ROLES.CLIENT
-                  ? 'bg-purple-600 text-white shadow-xs'
-                  : 'text-neutral-500 hover:text-neutral-900'
+                  ? 'bg-purple-800 text-white shadow-2xs'
+                  : 'text-neutral-600 hover:text-neutral-900'
               }`}
             >
               I want to Book
@@ -106,10 +105,10 @@ export default function RegisterPage() {
             <button
               type="button"
               onClick={() => setSelectedRole(USER_ROLES.PROVIDER)}
-              className={`py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer ${
+              className={`py-2 text-xs font-bold rounded-lg transition-colors cursor-pointer ${
                 selectedRole === USER_ROLES.PROVIDER
-                  ? 'bg-emerald-600 text-white shadow-xs'
-                  : 'text-neutral-500 hover:text-neutral-900'
+                  ? 'bg-emerald-700 text-white shadow-2xs'
+                  : 'text-neutral-600 hover:text-neutral-900'
               }`}
             >
               I want to Provide
@@ -203,12 +202,12 @@ export default function RegisterPage() {
           </form>
 
           {/* Demo helper */}
-          <div className="mt-6 pt-4 border-t border-neutral-100 flex items-center justify-between">
+          <div className="mt-5 pt-4 border-t border-neutral-100 flex items-center justify-between">
             <span className="text-[11px] text-neutral-400 font-medium">Demo Testing?</span>
             <button
               type="button"
               onClick={handleQuickFill}
-              className="inline-flex items-center gap-1.5 text-[11px] font-bold text-primary-600 hover:text-primary-700 bg-primary-50/80 hover:bg-primary-100 px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 text-[11px] font-bold text-purple-800 hover:text-purple-950 bg-purple-50 hover:bg-purple-100 px-2.5 py-1.5 rounded-lg transition-colors cursor-pointer"
             >
               <Sparkles className="w-3.5 h-3.5" />
               <span>Fill sample student data</span>
@@ -216,6 +215,6 @@ export default function RegisterPage() {
           </div>
         </Card>
       </div>
-    </AuroraBackground>
+    </div>
   );
 }

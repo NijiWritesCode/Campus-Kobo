@@ -23,7 +23,7 @@ export default function Logo({
     <div className={cn('inline-flex items-center gap-2.5 select-none', className)}>
       <div
         className={cn(
-          'bg-gradient-to-tr from-purple-600 via-teal-600 to-emerald-500 text-white font-black flex items-center justify-center shadow-xs shrink-0 tracking-tight ring-1 ring-white/20',
+          'bg-purple-800 text-white font-black flex items-center justify-center shrink-0 tracking-tight',
           iconSizes[size] || iconSizes.md
         )}
       >
@@ -36,8 +36,8 @@ export default function Logo({
             textSizes[size] || textSizes.md
           )}
         >
-          <span className="text-purple-600">Campus</span>{' '}
-          <span className="text-emerald-600">Kobo</span>
+          <span className="text-purple-900">Campus</span>{' '}
+          <span className="text-emerald-700">Kobo</span>
         </span>
         {showTagline && (
           <span className="text-[10px] text-neutral-500 font-medium tracking-wide">

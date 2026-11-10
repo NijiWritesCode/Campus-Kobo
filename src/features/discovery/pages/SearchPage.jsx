@@ -46,7 +46,7 @@ export default function SearchPage() {
     <div className="space-y-6 pb-8">
       {/* Search Header */}
       <div className="space-y-3">
-        <h1 className="text-2xl font-bold tracking-tight text-neutral-900 font-display">
+        <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 font-display">
           Search Campus Providers
         </h1>
         <div className="flex items-center gap-2">
@@ -62,12 +62,12 @@ export default function SearchPage() {
           <button
             type="button"
             onClick={() => setMobileFilterOpen(true)}
-            className="lg:hidden relative p-3 rounded-2xl border border-neutral-200 bg-white text-neutral-700 hover:bg-neutral-50 shadow-2xs focus:outline-none"
+            className="lg:hidden relative p-3 rounded-xl border border-neutral-300 bg-white text-neutral-700 hover:bg-neutral-50 shadow-2xs focus:outline-none"
             aria-label="Filter results"
           >
             <SlidersHorizontal className="w-5 h-5" />
             {activeFiltersCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-primary-500 text-white text-[10px] font-bold flex items-center justify-center shadow-xs">
+              <span className="absolute -top-1 -right-1 w-5 h-5 rounded-full bg-emerald-700 text-white text-[10px] font-bold flex items-center justify-center">
                 {activeFiltersCount}
               </span>
             )}

@@ -8,8 +8,6 @@ import {
   Heart,
   ChevronRight,
 } from 'lucide-react';
-import SpotlightCard from '@/components/react-bits/SpotlightCard';
-import Badge from '@/components/ui/Badge';
 import { useCategories } from '../hooks/useCategories';
 
 const CATEGORY_ICONS = {
@@ -25,73 +23,53 @@ export default function CategoryGrid({ showHeader = true }) {
   const { categories } = useCategories();
 
   return (
-    <section aria-labelledby="explore-categories-heading" className="space-y-4">
+    <section aria-labelledby="explore-categories-heading" className="space-y-3">
       {showHeader && (
         <div className="flex items-center justify-between">
           <div>
-            <h2 id="explore-categories-heading" className="text-lg sm:text-xl font-bold text-neutral-900 font-display">
-              Browse by Category
+            <h2 id="explore-categories-heading" className="text-base sm:text-lg font-bold text-neutral-900 font-display">
+              Browse Categories
             </h2>
-            <p className="text-xs text-neutral-500 font-medium">
-              Fixed-price services offered by verified university peers
+            <p className="text-xs text-neutral-500">
+              Verified student providers across UNILAG
             </p>
           </div>
           <Link
             to="/app/search"
-            className="text-xs font-bold text-primary-600 hover:text-primary-700 inline-flex items-center gap-1 group"
+            className="text-xs font-semibold text-purple-800 hover:text-purple-950 inline-flex items-center gap-0.5"
           >
-            <span>All Services</span>
-            <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            <span>View All</span>
+            <ChevronRight className="w-3.5 h-3.5" />
           </Link>
         </div>
       )}
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
+      {/* Mobile-Friendly Category Grid */}
+      <div className="grid grid-cols-3 sm:grid-cols-6 gap-2 sm:gap-3">
         {categories.map((cat, idx) => {
           const Icon = CATEGORY_ICONS[cat.icon] || Sparkles;
           const isPurple = idx % 2 === 0;
           return (
-            <Link key={cat.id} to={`/app/categories/${cat.slug}`}>
-              <SpotlightCard className="h-full p-4 sm:p-5 flex flex-col justify-between group relative overflow-hidden transition-all duration-300 hover:-translate-y-0.5">
-                {cat.badge && (
-                  <div className="absolute top-2.5 right-2.5">
-                    <Badge variant={isPurple ? 'secondary' : 'primary'} size="sm" className="text-[10px]">
-                      {cat.badge}
-                    </Badge>
-                  </div>
-                )}
-
-                <div>
-                  <div
-                    className={`w-11 h-11 rounded-2xl flex items-center justify-center mb-3 group-hover:scale-105 transition-all duration-200 shadow-2xs ${
-                      isPurple
-                        ? 'bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white'
-                        : 'bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white'
-                    }`}
-                  >
-                    <Icon className="w-5 h-5" />
-                  </div>
-                  <h3
-                    className={`font-bold text-sm text-neutral-900 transition-colors font-display ${
-                      isPurple ? 'group-hover:text-purple-600' : 'group-hover:text-emerald-600'
-                    }`}
-                  >
-                    {cat.name}
-                  </h3>
-                  <p className="text-[11px] text-neutral-500 mt-1 line-clamp-2 leading-relaxed">
-                    {cat.description}
-                  </p>
-                </div>
-
-                <div className="pt-3 mt-2 border-t border-neutral-100 flex items-center justify-between text-[11px] font-semibold text-neutral-400 group-hover:text-neutral-700">
-                  <span>{cat.providerCount} student providers</span>
-                  <ChevronRight
-                    className={`w-3.5 h-3.5 text-neutral-300 group-hover:translate-x-0.5 transition-all ${
-                      isPurple ? 'group-hover:text-purple-600' : 'group-hover:text-emerald-600'
-                    }`}
-                  />
-                </div>
-              </SpotlightCard>
+            <Link
+              key={cat.id}
+              to={`/app/categories/${cat.slug}`}
+              className="flex flex-col items-center text-center p-2.5 sm:p-3 rounded-xl bg-white border border-neutral-200 hover:border-neutral-300 transition-colors shadow-2xs group"
+            >
+              <div
+                className={`w-11 h-11 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center mb-2 transition-transform group-hover:scale-105 ${
+                  isPurple
+                    ? 'bg-purple-50 text-purple-900 border border-purple-200/80'
+                    : 'bg-emerald-50 text-emerald-800 border border-emerald-200/80'
+                }`}
+              >
+                <Icon className="w-5 h-5" />
+              </div>
+              <h3 className="font-semibold text-xs text-neutral-900 group-hover:text-neutral-950 truncate w-full">
+                {cat.name}
+              </h3>
+              <span className="text-[10px] text-neutral-500 mt-0.5">
+                {cat.providerCount} peers
+              </span>
             </Link>
           );
         })}

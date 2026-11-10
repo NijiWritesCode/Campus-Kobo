@@ -19,12 +19,12 @@ export default function FilterPanel({
     <Card variant="default" padding="md" className="space-y-5">
       <div className="flex items-center justify-between pb-3 border-b border-neutral-100">
         <div className="flex items-center gap-2">
-          <Filter className="w-4 h-4 text-primary-600" />
+          <Filter className="w-4 h-4 text-emerald-700" />
           <h3 className="text-xs font-bold text-neutral-900 uppercase tracking-wider">
             Filter Services
           </h3>
           {activeCount > 0 && (
-            <span className="w-5 h-5 rounded-full bg-primary-500 text-white text-[10px] font-bold flex items-center justify-center">
+            <span className="w-5 h-5 rounded-full bg-emerald-700 text-white text-[10px] font-bold flex items-center justify-center">
               {activeCount}
             </span>
           )}
@@ -34,7 +34,7 @@ export default function FilterPanel({
           <button
             type="button"
             onClick={onReset}
-            className="text-[11px] font-bold text-neutral-400 hover:text-primary-600 flex items-center gap-1"
+            className="text-[11px] font-bold text-neutral-400 hover:text-emerald-700 flex items-center gap-1"
           >
             <RotateCcw className="w-3 h-3" />
             <span>Reset</span>
@@ -49,10 +49,10 @@ export default function FilterPanel({
           <button
             type="button"
             onClick={() => onSelectCategory('all')}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+            className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
               selectedCategory === 'all' || !selectedCategory
                 ? 'bg-neutral-900 text-white shadow-2xs'
-                : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
+                : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
             }`}
           >
             All Categories
@@ -64,10 +64,10 @@ export default function FilterPanel({
                 key={cat.id}
                 type="button"
                 onClick={() => onSelectCategory(cat.slug)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                   isSelected
-                    ? 'bg-primary-500 text-white shadow-xs'
-                    : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
+                    ? 'bg-purple-800 text-white shadow-2xs'
+                    : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
                 }`}
               >
                 {cat.name}
@@ -81,7 +81,7 @@ export default function FilterPanel({
       <div className="space-y-2">
         <div className="flex items-center justify-between text-xs font-semibold">
           <label htmlFor="price-range" className="text-neutral-700">Max Starting Price</label>
-          <span className="text-primary-600 font-bold font-mono">
+          <span className="text-emerald-700 font-bold font-mono">
             {formatCurrency(maxPriceKobo)}
           </span>
         </div>
@@ -93,7 +93,7 @@ export default function FilterPanel({
           step={50000} // ₦500
           value={maxPriceKobo}
           onChange={(e) => onChangeMaxPrice(Number(e.target.value))}
-          className="w-full accent-primary-500 cursor-pointer"
+          className="w-full accent-emerald-700 cursor-pointer"
         />
         <div className="flex justify-between text-[10px] text-neutral-400 font-medium">
           <span>₦1,500</span>
@@ -110,10 +110,10 @@ export default function FilterPanel({
               key={rt}
               type="button"
               onClick={() => onChangeMinRating(rt)}
-              className={`py-1.5 px-2 rounded-lg text-xs font-semibold transition-all cursor-pointer ${
+              className={`py-1.5 px-2 rounded-lg text-xs font-semibold transition-colors cursor-pointer ${
                 minRating === rt
-                  ? 'bg-primary-50 text-primary-700 border border-primary-300 font-bold'
-                  : 'bg-neutral-100 text-neutral-600 hover:bg-neutral-200'
+                  ? 'bg-emerald-50 text-emerald-800 border border-emerald-300 font-bold'
+                  : 'bg-neutral-100 text-neutral-700 hover:bg-neutral-200'
               }`}
             >
               {rt === 0 ? 'Any' : `${rt}★+`}

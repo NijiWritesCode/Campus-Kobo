@@ -10,7 +10,7 @@ import { mockProviders } from '@/mocks/data/providers';
 
 const QUICK_TAGS = [
   'Knotless Braids',
-  'Skin Fade & Lineup',
+  'Skin Fade',
   'Gel Acrylics',
   'Lash Sets',
   'Moremi Hall',
@@ -32,117 +32,97 @@ export default function HomePage() {
   const recentProviders = mockProviders.slice(2, 6);
 
   return (
-    <div className="space-y-12 pb-8">
-      {/* Hero Greeting & Search Header */}
-      <section className="relative rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-white via-purple-50/25 to-emerald-50/25 border border-neutral-200/80 shadow-xs overflow-hidden">
-        {/* Soft background ambient gradient */}
-        <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-purple-500/15 via-emerald-400/10 to-transparent rounded-full blur-3xl pointer-events-none" />
-
-        <div className="relative z-10 max-w-2xl space-y-4">
-          <div className="flex flex-wrap items-center gap-2">
+    <div className="space-y-6 sm:space-y-8 pb-4">
+      {/* Mobile-First Search & Greeting Header */}
+      <section className="space-y-3 pt-1">
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
             <Badge variant="secondary" size="sm" dot>
-              UNILAG Campus Pilot
+              UNILAG Campus
             </Badge>
-            <div className="hidden xs:flex items-center gap-1 text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
-              <span>Hostel-Verified Providers</span>
+            <div className="flex items-center gap-1 text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-700" />
+              <span>Hostel-Verified</span>
             </div>
           </div>
 
-          <div className="space-y-1.5">
-            <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-neutral-900 font-display leading-tight">
-              Book student talent on{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-emerald-600">
-                campus
-              </span>
-            </h1>
-            <p className="text-xs sm:text-base text-neutral-600 font-normal leading-relaxed">
-              Find hairstylists, nail techs, barbers, and makeup artists right in your hostels. Transparent prices and escrow PIN safety.
-            </p>
-          </div>
+          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 font-display">
+            Find student services on campus
+          </h1>
+          <p className="text-xs sm:text-sm text-neutral-600">
+            Book verified peers in Moremi, New Hall, Jaja & across campus hostels
+          </p>
+        </div>
 
-          {/* Global Search Bar */}
-          <div className="pt-2">
-            <SearchBar
-              placeholder="Search braids, skin fades, gel nails, Moremi Hall..."
-              onSubmit={handleSearchSubmit}
-              className="shadow-sm"
-            />
-          </div>
+        {/* Search Bar */}
+        <div>
+          <SearchBar
+            placeholder="Search braids, tapers, gel nails, Moremi Hall..."
+            onSubmit={handleSearchSubmit}
+          />
+        </div>
 
-          {/* Quick search tags */}
-          <div className="flex items-center gap-1.5 pt-1 overflow-x-auto pb-1 scrollbar-none text-xs">
-            <span className="text-[11px] font-semibold text-neutral-400 flex items-center gap-1 shrink-0">
-              <Zap className="w-3 h-3 text-purple-500" />
-              <span>Popular:</span>
-            </span>
-            {QUICK_TAGS.map((tag, idx) => {
-              const isPurple = idx % 2 === 0;
-              return (
-                <button
-                  key={tag}
-                  type="button"
-                  onClick={() => handleSearchSubmit(tag)}
-                  className={`shrink-0 px-2.5 py-1 rounded-lg bg-white/90 text-neutral-700 text-[11px] font-medium border border-neutral-200/80 transition-all cursor-pointer shadow-2xs ${
-                    isPurple
-                      ? 'hover:border-purple-300 hover:text-purple-700 hover:bg-purple-50/50'
-                      : 'hover:border-emerald-300 hover:text-emerald-700 hover:bg-emerald-50/50'
-                  }`}
-                >
-                  {tag}
-                </button>
-              );
-            })}
-          </div>
+        {/* Quick Search Tags */}
+        <div className="flex items-center gap-1.5 pt-0.5 overflow-x-auto pb-1 scrollbar-none text-xs">
+          <span className="text-[11px] font-medium text-neutral-400 flex items-center gap-1 shrink-0">
+            <Zap className="w-3 h-3 text-purple-700" />
+            <span>Popular:</span>
+          </span>
+          {QUICK_TAGS.map((tag) => (
+            <button
+              key={tag}
+              type="button"
+              onClick={() => handleSearchSubmit(tag)}
+              className="shrink-0 px-2.5 py-1 rounded-md bg-white text-neutral-700 hover:text-neutral-950 text-[11px] font-medium border border-neutral-200 hover:border-neutral-300 transition-colors shadow-2xs"
+            >
+              {tag}
+            </button>
+          ))}
         </div>
       </section>
+
+      {/* Categories Grid (Swipeable / Compact on Mobile) */}
+      <CategoryGrid />
 
       {/* Featured Campus Talent Carousel */}
       <FeaturedCarousel providers={topProviders} />
 
-      {/* Categories Grid */}
-      <CategoryGrid />
-
-      {/* Campus Trust Banner */}
-      <section className="rounded-3xl bg-neutral-900 text-white p-6 sm:p-9 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden border border-neutral-800">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/15 rounded-full blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-0 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
-
-        <div className="space-y-2.5 max-w-lg text-center md:text-left relative z-10">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 text-emerald-400 text-xs font-bold border border-emerald-800/80">
-            <KeyRound className="w-3.5 h-3.5 text-emerald-400" />
-            <span>Escrow-Protected Settlement</span>
+      {/* Clean Escrow Trust Callout Banner (NO GRADIENTS) */}
+      <section className="rounded-xl bg-emerald-50 border border-emerald-200 p-4 sm:p-5 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+        <div className="space-y-1">
+          <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-800">
+            <KeyRound className="w-4 h-4 text-emerald-700" />
+            <span>6-Digit Completion PIN Escrow</span>
           </div>
-          <h2 className="text-xl sm:text-2xl font-bold font-display text-white">
+          <h2 className="text-base sm:text-lg font-bold text-neutral-900 font-display">
             Never pay before seeing your hair or nails
           </h2>
-          <p className="text-xs sm:text-sm text-neutral-300 leading-relaxed font-normal">
-            Your booking payment is safely held until you share your 6-digit completion PIN with your provider. No cash awkwardness.
+          <p className="text-xs text-neutral-600 max-w-xl leading-relaxed">
+            Your booking funds are safely held until the service is delivered. You release payment by giving your provider the 6-digit PIN.
           </p>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-3 w-full md:w-auto relative z-10">
+        <div className="shrink-0">
           <Button
             variant="primary"
-            size="md"
+            size="sm"
             onClick={() => navigate('/app/search')}
-            icon={<ArrowRight className="w-4 h-4" />}
+            icon={<ArrowRight className="w-3.5 h-3.5" />}
             iconPosition="right"
-            className="shadow-md shadow-emerald-500/30"
           >
-            Explore Listings
+            Explore Services
           </Button>
         </div>
       </section>
 
-      {/* Popular in Hostels Grid */}
-      <section aria-labelledby="nearby-heading" className="space-y-4">
+      {/* Popular Around Hostels Grid */}
+      <section aria-labelledby="nearby-heading" className="space-y-3">
         <div className="flex items-center justify-between">
           <div>
-            <h2 id="nearby-heading" className="text-lg sm:text-xl font-bold text-neutral-900 font-display">
+            <h2 id="nearby-heading" className="text-base sm:text-lg font-bold text-neutral-900 font-display">
               Popular Around Hostels
             </h2>
-            <p className="text-xs text-neutral-500 font-medium">
+            <p className="text-xs text-neutral-500">
               Verified providers serving Moremi, New Hall, and Jaja axis
             </p>
           </div>
@@ -155,7 +135,7 @@ export default function HomePage() {
           </Button>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {recentProviders.map((prov) => (
             <ProviderCard key={prov.id} provider={prov} />
           ))}

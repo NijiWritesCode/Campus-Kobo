@@ -80,11 +80,11 @@ export default function ProviderProfilePage() {
         )}
       </div>
 
-      {/* Floating Bottom Quick-Booking Bar on Mobile */}
-      <div className="fixed bottom-16 inset-x-0 z-20 md:hidden bg-white/95 backdrop-blur-md border-t border-neutral-200 px-4 py-2.5 flex items-center justify-between shadow-lg">
+      {/* Fixed Bottom Quick-Booking Bar on Mobile (Clean Solid Style) */}
+      <div className="fixed bottom-16 inset-x-0 z-30 md:hidden bg-white border-t border-neutral-200 px-4 py-3 flex items-center justify-between">
         <div>
-          <span className="text-[10px] text-neutral-400 block font-medium">Starting from</span>
-          <span className="text-base font-extrabold text-neutral-900 font-display">
+          <span className="text-[10px] text-neutral-500 block font-medium">Starting from</span>
+          <span className="text-base font-bold text-neutral-900 font-display">
             {formatCurrency(provider.startingPriceKobo)}
           </span>
         </div>

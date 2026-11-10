@@ -51,7 +51,7 @@ export default function AppShell({ variant = 'client' }) {
                   cn(
                     'flex items-center gap-2 text-xs font-semibold py-3 border-b-2 transition-all',
                     isActive
-                      ? 'border-primary-500 text-primary-600 font-bold'
+                      ? 'border-emerald-700 text-emerald-800 font-bold'
                       : 'border-transparent text-neutral-600 hover:text-neutral-900 hover:border-neutral-300'
                   )
                 }
@@ -65,7 +65,7 @@ export default function AppShell({ variant = 'client' }) {
       </nav>
 
       {/* Main Content Area */}
-      <main className="flex-1 max-w-5xl w-full mx-auto px-4 py-6 pb-24 md:pb-12">
+      <main className="flex-1 max-w-5xl w-full mx-auto px-4 py-4 sm:py-6 pb-24 md:pb-12">
         <VerificationGate />
         <Outlet />
       </main>

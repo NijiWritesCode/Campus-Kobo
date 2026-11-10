@@ -19,23 +19,23 @@ export default function Button({
 
   const variants = {
     primary:
-      'bg-primary-600 hover:bg-primary-500 text-white shadow-[0_2px_10px_rgba(5,150,105,0.25),inset_0_1px_0_0_rgba(255,255,255,0.2)] focus-visible:ring-primary-500 active:bg-primary-700 font-semibold',
+      'bg-emerald-700 hover:bg-emerald-800 active:bg-emerald-900 text-white focus-visible:ring-emerald-700 font-semibold shadow-xs',
     secondary:
-      'bg-secondary-600 hover:bg-secondary-500 text-white shadow-[0_2px_10px_rgba(124,58,237,0.25),inset_0_1px_0_0_rgba(255,255,255,0.2)] focus-visible:ring-secondary-500 active:bg-secondary-700 font-semibold',
+      'bg-purple-800 hover:bg-purple-900 active:bg-purple-950 text-white focus-visible:ring-purple-800 font-semibold shadow-xs',
     purple:
-      'bg-purple-600 hover:bg-purple-500 text-white shadow-[0_2px_10px_rgba(124,58,237,0.25),inset_0_1px_0_0_rgba(255,255,255,0.2)] focus-visible:ring-purple-500 active:bg-purple-700 font-semibold',
+      'bg-purple-800 hover:bg-purple-900 active:bg-purple-950 text-white focus-visible:ring-purple-800 font-semibold shadow-xs',
     emerald:
-      'bg-emerald-600 hover:bg-emerald-500 text-white shadow-[0_2px_10px_rgba(5,150,105,0.25),inset_0_1px_0_0_rgba(255,255,255,0.2)] focus-visible:ring-emerald-500 active:bg-emerald-700 font-semibold',
+      'bg-emerald-700 hover:bg-emerald-800 active:bg-emerald-900 text-white focus-visible:ring-emerald-700 font-semibold shadow-xs',
     outline:
-      'border border-neutral-200 hover:border-neutral-300 bg-white hover:bg-neutral-50/80 text-neutral-800 shadow-2xs focus-visible:ring-neutral-400 font-medium',
+      'border border-neutral-300 hover:border-neutral-400 bg-white hover:bg-neutral-50 text-neutral-900 focus-visible:ring-neutral-400 font-semibold shadow-xs',
     ghost:
-      'bg-transparent hover:bg-neutral-100/90 text-neutral-600 hover:text-neutral-900 focus-visible:ring-neutral-300 font-medium',
+      'bg-transparent hover:bg-neutral-100 text-neutral-700 hover:text-neutral-900 focus-visible:ring-neutral-300 font-medium',
     danger:
-      'bg-red-600 hover:bg-red-500 text-white shadow-[0_2px_10px_rgba(220,38,38,0.25),inset_0_1px_0_0_rgba(255,255,255,0.2)] focus-visible:ring-red-500 active:bg-red-700 font-semibold',
+      'bg-red-600 hover:bg-red-700 active:bg-red-800 text-white focus-visible:ring-red-600 font-semibold shadow-xs',
     subtle:
-      'bg-neutral-100 hover:bg-neutral-200/80 text-neutral-800 font-medium border border-neutral-200/60',
+      'bg-neutral-100 hover:bg-neutral-200 text-neutral-800 font-medium border border-neutral-200',
     dark:
-      'bg-neutral-950 hover:bg-neutral-900 text-white shadow-[0_2px_10px_rgba(9,9,11,0.25),inset_0_1px_0_0_rgba(255,255,255,0.15)] focus-visible:ring-neutral-700 font-semibold',
+      'bg-neutral-900 hover:bg-neutral-800 text-white focus-visible:ring-neutral-700 font-semibold shadow-xs',
   };
 
   const sizes = {

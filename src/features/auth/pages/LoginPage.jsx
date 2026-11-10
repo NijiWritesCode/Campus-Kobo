@@ -9,7 +9,6 @@ import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import Card from '@/components/ui/Card';
 import Divider from '@/components/ui/Divider';
-import AuroraBackground from '@/components/react-bits/AuroraBackground';
 import { loginSchema } from '@/lib/validators';
 import { useAuthStore } from '@/stores/authStore';
 import { USER_ROLES, VERIFICATION_STATUSES } from '@/lib/constants';
@@ -111,19 +110,19 @@ export default function LoginPage() {
   };
 
   return (
-    <AuroraBackground className="min-h-screen py-10 px-4 sm:px-6">
-      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center space-y-3">
+    <div className="min-h-screen bg-neutral-50 flex flex-col justify-center py-8 px-4 sm:px-6">
+      <div className="sm:mx-auto sm:w-full sm:max-w-md text-center space-y-2">
         <Logo size="lg" to="/" />
-        <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900 font-display">
+        <h1 className="text-2xl font-bold tracking-tight text-neutral-900 font-display">
           Welcome back
         </h1>
-        <p className="text-xs sm:text-sm text-neutral-500 font-normal">
+        <p className="text-xs text-neutral-500">
           Sign in to manage your campus bookings and service listings
         </p>
       </div>
 
       <div className="mt-6 sm:mx-auto sm:w-full sm:max-w-md">
-        <Card variant="elevated" padding="lg" className="border border-neutral-200/90 shadow-lg">
+        <Card variant="default" padding="lg" className="border border-neutral-200 shadow-xs">
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4" noValidate>
             <Input
               label="Student Email or Phone Number"
@@ -231,12 +230,12 @@ export default function LoginPage() {
 
           <div className="mt-6 text-center text-xs text-neutral-500">
             Don't have an account yet?{' '}
-            <Link to="/register" className="font-bold text-purple-600 hover:text-purple-700">
+            <Link to="/register" className="font-bold text-purple-800 hover:text-purple-950">
               Create an account
             </Link>
           </div>
         </Card>
       </div>
-    </AuroraBackground>
+    </div>
   );
 }

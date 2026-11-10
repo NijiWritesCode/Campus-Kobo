@@ -17,8 +17,8 @@ export default function Header({ variant = 'client' }) {
   };
 
   return (
-    <header className="sticky top-0 z-30 glass-panel border-b border-neutral-200/80 transition-shadow">
-      <div className="max-w-5xl mx-auto px-4 h-16 flex items-center justify-between gap-4">
+    <header className="sticky top-0 z-30 bg-white border-b border-neutral-200">
+      <div className="max-w-5xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between gap-4">
         {/* Left: Brand Logo */}
         <Logo size="md" to={variant === 'provider' ? '/provider' : '/app'} />
 
@@ -29,27 +29,28 @@ export default function Header({ variant = 'client' }) {
             <Link
               to={variant === 'provider' ? '/app' : '/provider'}
               onClick={toggleRole}
-              className="hidden xs:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold bg-neutral-100 hover:bg-neutral-200 text-neutral-800 transition-colors border border-neutral-200 shadow-2xs hover:shadow-xs active:scale-[0.98]"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold bg-neutral-100 hover:bg-neutral-200 text-neutral-800 transition-colors border border-neutral-200"
             >
-              <ArrowLeftRight className="w-3.5 h-3.5 text-primary-600" />
-              <span>{variant === 'provider' ? 'Switch to Buying' : 'Switch to Selling'}</span>
+              <ArrowLeftRight className="w-3.5 h-3.5 text-purple-700" />
+              <span className="hidden xs:inline">{variant === 'provider' ? 'Switch to Buying' : 'Switch to Selling'}</span>
+              <span className="xs:hidden">{variant === 'provider' ? 'Buy' : 'Sell'}</span>
             </Link>
           )}
 
           {/* Notifications */}
           <Link
             to="/app/notifications"
-            className="relative p-2.5 rounded-2xl text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 transition-all focus:outline-none focus:ring-2 focus:ring-primary-500/20 active:scale-95"
+            className="relative p-2 rounded-lg text-neutral-600 hover:text-neutral-900 hover:bg-neutral-100 transition-colors focus:outline-none"
             aria-label="Notifications"
           >
             <Bell className="w-5 h-5" />
-            <span className="absolute top-2 right-2 w-2 h-2 rounded-full bg-primary-500 ring-2 ring-white animate-pulse" />
+            <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-emerald-600 ring-2 ring-white" />
           </Link>
 
           {/* Profile Avatar / Menu */}
           <Link
             to={variant === 'provider' ? '/provider/profile' : '/app/profile'}
-            className="flex items-center gap-2 p-1 rounded-full hover:ring-2 hover:ring-primary-400/50 transition-all focus:outline-none active:scale-95"
+            className="flex items-center gap-2 p-0.5 rounded-full hover:ring-2 hover:ring-purple-600/40 transition-all focus:outline-none"
             aria-label="My Account"
           >
             {user ? (
