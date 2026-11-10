@@ -39,6 +39,20 @@ import ProviderBookings from '@/features/provider-dashboard/pages/ProviderBookin
 import ProviderBookingDetail from '@/features/provider-dashboard/pages/ProviderBookingDetail';
 import EarningsPage from '@/features/provider-dashboard/pages/EarningsPage';
 
+// Admin Portal Surface Pages (Phase 6)
+import AdminOverview from '@/features/admin/pages/AdminOverview';
+import VerificationQueue from '@/features/admin/pages/VerificationQueue';
+import VerificationDetail from '@/features/admin/pages/VerificationDetail';
+import ProviderManagement from '@/features/admin/pages/ProviderManagement';
+import ServiceModeration from '@/features/admin/pages/ServiceModeration';
+import AdminBookings from '@/features/admin/pages/AdminBookings';
+import AdminBookingDetail from '@/features/admin/pages/AdminBookingDetail';
+import PaymentManagement from '@/features/admin/pages/PaymentManagement';
+import DisputeManagement from '@/features/admin/pages/DisputeManagement';
+import DisputeDetail from '@/features/admin/pages/DisputeDetail';
+import PayoutManagement from '@/features/admin/pages/PayoutManagement';
+import AuditLog from '@/features/admin/pages/AuditLog';
+
 export const router = createBrowserRouter([
   // Public Landing & Authentication routes
   { path: '/', element: <WelcomePage /> },
@@ -103,33 +117,18 @@ export const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      {
-        index: true,
-        element: (
-          <div className="py-8 text-center space-y-2">
-            <h2 className="text-xl font-bold font-display text-neutral-900">Admin Portal Overview</h2>
-            <p className="text-xs text-neutral-500">Coming in Phase 6: Admin Dashboard & Dispute Resolution</p>
-          </div>
-        ),
-      },
-      {
-        path: 'verifications',
-        element: (
-          <div className="py-8 text-center space-y-2">
-            <h2 className="text-xl font-bold font-display text-neutral-900">Student Verifications Queue</h2>
-            <p className="text-xs text-neutral-500">Coming in Phase 6</p>
-          </div>
-        ),
-      },
-      {
-        path: 'disputes',
-        element: (
-          <div className="py-8 text-center space-y-2">
-            <h2 className="text-xl font-bold font-display text-neutral-900">Disputes & Claims</h2>
-            <p className="text-xs text-neutral-500">Coming in Phase 6</p>
-          </div>
-        ),
-      },
+      { index: true, element: <AdminOverview /> },
+      { path: 'verifications', element: <VerificationQueue /> },
+      { path: 'verifications/:id', element: <VerificationDetail /> },
+      { path: 'providers', element: <ProviderManagement /> },
+      { path: 'services', element: <ServiceModeration /> },
+      { path: 'bookings', element: <AdminBookings /> },
+      { path: 'bookings/:id', element: <AdminBookingDetail /> },
+      { path: 'payments', element: <PaymentManagement /> },
+      { path: 'disputes', element: <DisputeManagement /> },
+      { path: 'disputes/:id', element: <DisputeDetail /> },
+      { path: 'payouts', element: <PayoutManagement /> },
+      { path: 'audit-log', element: <AuditLog /> },
     ],
   },
 

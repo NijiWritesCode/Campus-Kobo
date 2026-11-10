@@ -86,7 +86,7 @@ export default function Sidebar() {
                     cn(
                       'flex items-center justify-between px-3.5 py-2.5 rounded-xl text-xs font-semibold transition-all',
                       isActive
-                        ? 'bg-primary-500 text-white font-bold shadow-xs'
+                        ? 'bg-purple-800 text-white font-bold shadow-2xs'
                         : 'text-neutral-300 hover:text-white hover:bg-neutral-900'
                     )
                   }
@@ -96,7 +96,7 @@ export default function Sidebar() {
                     <span>{item.label}</span>
                   </div>
                   {item.badge && (
-                    <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-primary-950/60 text-primary-300 font-bold border border-primary-800/60">
+                    <span className="text-[10px] px-1.5 py-0.5 rounded-md bg-emerald-950/70 text-emerald-300 font-bold border border-emerald-800/60">
                       {item.badge}
                     </span>
                   )}
