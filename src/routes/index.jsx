@@ -19,6 +19,15 @@ import CategoryPage from '@/features/discovery/pages/CategoryPage';
 import ProviderProfilePage from '@/features/provider-public/pages/ProviderProfilePage';
 import DesignSystemShowcase from '@/features/discovery/components/DesignSystemShowcase';
 
+// Booking & Checkout Flow Pages (Phase 4)
+import BookingPage from '@/features/booking/pages/BookingPage';
+import CheckoutPage from '@/features/booking/pages/CheckoutPage';
+import MyBookingsPage from '@/features/booking/pages/MyBookingsPage';
+import BookingDetailPage from '@/features/booking/pages/BookingDetailPage';
+import CompletionPinPage from '@/features/booking/pages/CompletionPinPage';
+import ProfilePage from '@/features/client-profile/pages/ProfilePage';
+import NotificationsPage from '@/features/notifications/pages/NotificationsPage';
+
 export const router = createBrowserRouter([
   // Public Landing & Authentication routes
   { path: '/', element: <WelcomePage /> },
@@ -41,47 +50,15 @@ export const router = createBrowserRouter([
       { path: 'providers/:slug', element: <ProviderProfilePage /> },
       { path: 'verification', element: <StudentVerificationPage /> },
       { path: 'showcase', element: <DesignSystemShowcase /> },
-      {
-        path: 'book/:variantId',
-        element: (
-          <div className="py-12 text-center space-y-3 max-w-md mx-auto">
-            <h2 className="text-xl font-bold font-display text-neutral-900">Booking Engine Ready</h2>
-            <p className="text-xs text-neutral-500">
-              Booking requests, date/time calendar scheduling, and checkout will be wired in Phase 4.
-            </p>
-            <a href="/app" className="inline-block py-2 px-4 rounded-xl bg-primary-500 text-white text-xs font-bold">
-              Back to Browse
-            </a>
-          </div>
-        ),
-      },
-      {
-        path: 'bookings',
-        element: (
-          <div className="py-8 text-center space-y-2">
-            <h2 className="text-xl font-bold font-display">My Bookings</h2>
-            <p className="text-xs text-neutral-500">Coming in Phase 4: Booking & Checkout Engine</p>
-          </div>
-        ),
-      },
-      {
-        path: 'profile',
-        element: (
-          <div className="py-8 text-center space-y-2">
-            <h2 className="text-xl font-bold font-display">My Profile & Account</h2>
-            <p className="text-xs text-neutral-500">Coming in Phase 4</p>
-          </div>
-        ),
-      },
-      {
-        path: 'notifications',
-        element: (
-          <div className="py-8 text-center space-y-2">
-            <h2 className="text-xl font-bold font-display">Notifications</h2>
-            <p className="text-xs text-neutral-500">Coming in Phase 4</p>
-          </div>
-        ),
-      },
+
+      // Phase 4: Booking & Checkout Engine
+      { path: 'book/:variantId', element: <BookingPage /> },
+      { path: 'checkout/:bookingId', element: <CheckoutPage /> },
+      { path: 'bookings', element: <MyBookingsPage /> },
+      { path: 'bookings/:bookingId', element: <BookingDetailPage /> },
+      { path: 'bookings/:bookingId/pin', element: <CompletionPinPage /> },
+      { path: 'profile', element: <ProfilePage /> },
+      { path: 'notifications', element: <NotificationsPage /> },
     ],
   },
 
