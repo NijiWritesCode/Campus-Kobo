@@ -7,6 +7,7 @@ import {
   KeyRound,
   MessageCircle,
   CheckCircle2,
+  School,
 } from 'lucide-react';
 import toast from 'react-hot-toast';
 import PageHeader from '@/components/layout/PageHeader';
@@ -16,6 +17,7 @@ import EmptyState from '@/components/ui/EmptyState';
 import BookingStatusBadge from '@/features/booking/components/BookingStatusBadge';
 import BookingTimeline from '@/features/booking/components/BookingTimeline';
 import PinSubmissionModal from '../components/PinSubmissionModal';
+import LectureRescheduleModal from '../components/LectureRescheduleModal';
 import { useProviderBookings } from '../hooks/useProviderBookings';
 import { useProviderEarnings } from '../hooks/useProviderEarnings';
 import { BOOKING_STATUSES } from '@/lib/constants';
@@ -26,6 +28,7 @@ export default function ProviderBookingDetail() {
   const { getBooking, verifyPin } = useProviderBookings();
   const { creditReleasedEscrow } = useProviderEarnings();
   const [pinModalOpen, setPinModalOpen] = useState(false);
+  const [rescheduleModalOpen, setRescheduleModalOpen] = useState(false);
 
   const booking = getBooking(bookingId);
 
@@ -81,23 +84,35 @@ export default function ProviderBookingDetail() {
           </div>
         </div>
 
-        {isConfirmedOrInProgress && (
-          <Button
-            variant="primary"
-            size="md"
-            onClick={() => setPinModalOpen(true)}
-            icon={<KeyRound className="w-4 h-4" />}
-          >
-            Enter 6-Digit Release PIN
-          </Button>
-        )}
+        <div className="flex flex-wrap items-center gap-2">
+          {isConfirmedOrInProgress && (
+            <>
+              <Button
+                variant="outline"
+                size="md"
+                onClick={() => setRescheduleModalOpen(true)}
+                icon={<School className="w-4 h-4 text-purple-700" />}
+              >
+                Class Clash / Propose Slot
+              </Button>
+              <Button
+                variant="primary"
+                size="md"
+                onClick={() => setPinModalOpen(true)}
+                icon={<KeyRound className="w-4 h-4" />}
+              >
+                Enter 6-Digit Release PIN
+              </Button>
+            </>
+          )}
 
-        {isCompleted && (
-          <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200">
-            <CheckCircle2 className="w-4 h-4 text-emerald-700" />
-            <span>Escrow Settled & Transferred</span>
-          </div>
-        )}
+          {isCompleted && (
+            <div className="flex items-center gap-1.5 text-xs font-bold text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-lg border border-emerald-200">
+              <CheckCircle2 className="w-4 h-4 text-emerald-700" />
+              <span>Escrow Settled & Transferred</span>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Stepper Timeline */}
@@ -220,6 +235,16 @@ export default function ProviderBookingDetail() {
         onClose={() => setPinModalOpen(false)}
         booking={booking}
         onVerifyPin={handleVerifyPin}
+      />
+
+      {/* Lecture Reschedule Modal */}
+      <LectureRescheduleModal
+        isOpen={rescheduleModalOpen}
+        onClose={() => setRescheduleModalOpen(false)}
+        booking={booking}
+        onProposeSlot={(_id, data) => {
+          toast.success(`Proposed alternate slot to ${booking.clientName}: ${data.proposedSlot}`);
+        }}
       />
     </div>
   );

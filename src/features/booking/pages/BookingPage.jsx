@@ -11,6 +11,7 @@ import PriceBreakdown from '../components/PriceBreakdown';
 import { mockServices } from '@/mocks/data/services';
 import { mockProviders } from '@/mocks/data/providers';
 import { useBookings } from '../hooks/useBookings';
+import { useProviderAvailability } from '@/features/provider-dashboard/hooks/useProviderAvailability';
 import { useAuthStore } from '@/stores/authStore';
 import { formatCurrency } from '@/lib/formatCurrency';
 
@@ -25,7 +26,8 @@ function getInitialBookingDates() {
 export default function BookingPage() {
   const { variantId } = useParams();
   const navigate = useNavigate();
-  const { createBooking } = useBookings();
+  const { bookings, createBooking } = useBookings();
+  const { computeAvailableSlots } = useProviderAvailability();
   const { user } = useAuthStore();
 
   // Find corresponding service & variant
@@ -49,7 +51,7 @@ export default function BookingPage() {
   const [initialDates] = useState(getInitialBookingDates);
   const [selectedDate, setSelectedDate] = useState(initialDates.iso);
   const [displayDate, setDisplayDate] = useState(initialDates.display);
-  const [selectedTime, setSelectedTime] = useState('12:00 PM');
+  const [selectedTime, setSelectedTime] = useState('');
   const [locationType, setLocationType] = useState('PROVIDER_HOSTEL');
   const [locationTitle, setLocationTitle] = useState("Provider's Space");
   const [locationDetails, setLocationDetails] = useState(
@@ -57,6 +59,17 @@ export default function BookingPage() {
   );
   const [specialNotes, setSpecialNotes] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Dynamic slot calculation around provider lectures and variant duration
+  const { slots: calculatedSlots, blockedReason } = computeAvailableSlots({
+    dateIso: selectedDate,
+    durationMinutes: matchedVariant?.durationMinutes || 60,
+    existingBookings: bookings,
+  });
+
+  const effectiveTime = calculatedSlots.some((s) => s.time === selectedTime)
+    ? selectedTime
+    : (calculatedSlots[0]?.time || '');
 
   if (!matchedService || !matchedVariant || !matchedProvider) {
     return (
@@ -89,8 +102,8 @@ export default function BookingPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!selectedDate || !selectedTime) {
-      toast.error('Please pick an appointment date and time');
+    if (!selectedDate || !effectiveTime) {
+      toast.error('Please pick an available appointment time slot');
       return;
     }
 
@@ -109,7 +122,7 @@ export default function BookingPage() {
         client: user,
         date: selectedDate,
         displayDate,
-        timeSlot: selectedTime,
+        timeSlot: effectiveTime,
         locationType,
         locationTitle,
         locationDetails: locationDetails.trim(),
@@ -163,22 +176,25 @@ export default function BookingPage() {
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
-        {/* Step 1: Date & Time Slot */}
+        {/* Step 1: Date & Dynamic Time Slot */}
         <section className="p-4 sm:p-5 rounded-xl bg-white border border-neutral-200 shadow-2xs space-y-4">
           <div className="border-b border-neutral-100 pb-2.5">
             <h3 className="text-sm font-bold text-neutral-900 font-display">
               1. Choose Date & Time
             </h3>
             <p className="text-xs text-neutral-500">
-              Select an available time slot convenient for your lecture schedule
+              Showing time windows verified against {matchedProvider.studentName}'s university class schedule
             </p>
           </div>
 
           <DateTimePicker
             selectedDate={selectedDate}
             onSelectDate={handleDateSelect}
-            selectedTime={selectedTime}
+            selectedTime={effectiveTime}
             onSelectTime={setSelectedTime}
+            availableSlots={calculatedSlots}
+            blockedReason={blockedReason}
+            durationMinutes={matchedVariant.durationMinutes}
           />
         </section>
 
@@ -235,7 +251,7 @@ export default function BookingPage() {
             size="lg"
             fullWidth
             type="submit"
-            disabled={isSubmitting}
+            disabled={isSubmitting || !selectedTime}
             icon={<ArrowRight className="w-4 h-4" />}
             iconPosition="right"
           >
