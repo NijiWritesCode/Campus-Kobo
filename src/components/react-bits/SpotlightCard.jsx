@@ -8,7 +8,7 @@ import { cn } from '@/lib/cn';
 export default function SpotlightCard({
   children,
   className = '',
-  spotlightColor = 'rgba(249, 115, 22, 0.12)',
+  spotlightColor = 'rgba(16, 185, 129, 0.12)',
   ...props
 }) {
   const divRef = useRef(null);

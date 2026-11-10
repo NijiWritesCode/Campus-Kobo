@@ -167,7 +167,7 @@ export default function LoginPage() {
               size="lg"
               fullWidth
               loading={isSubmitting}
-              className="shadow-md shadow-primary-500/25"
+              className="shadow-md shadow-emerald-600/25"
             >
               Sign In to Campus Kobo
             </Button>
@@ -180,35 +180,35 @@ export default function LoginPage() {
             <button
               type="button"
               onClick={() => handleDemoLogin('provider')}
-              className="w-full flex items-center justify-between p-3 rounded-2xl border border-neutral-200 hover:border-primary-400 bg-neutral-50/70 hover:bg-white text-xs font-semibold text-neutral-800 transition-all cursor-pointer group shadow-2xs hover:shadow-xs active:scale-[0.99]"
+              className="w-full flex items-center justify-between p-3 rounded-2xl border border-purple-200/80 hover:border-purple-400 bg-purple-50/40 hover:bg-white text-xs font-semibold text-neutral-800 transition-all cursor-pointer group shadow-2xs hover:shadow-xs active:scale-[0.99]"
             >
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-xl bg-primary-100 text-primary-600 flex items-center justify-center group-hover:bg-primary-500 group-hover:text-white transition-colors">
+                <div className="w-8 h-8 rounded-xl bg-purple-100 text-purple-600 flex items-center justify-center group-hover:bg-purple-600 group-hover:text-white transition-colors">
                   <Store className="w-4 h-4" />
                 </div>
                 <div className="text-left">
-                  <div className="font-bold text-neutral-900 group-hover:text-primary-600 font-display">Adaeze (Verified Provider)</div>
+                  <div className="font-bold text-neutral-900 group-hover:text-purple-600 font-display">Adaeze (Verified Provider)</div>
                   <div className="text-[10px] text-neutral-500 font-normal">Hairstylist with bookings & services</div>
                 </div>
               </div>
-              <span className="text-[11px] bg-primary-50 text-primary-700 px-2.5 py-1 rounded-lg font-bold group-hover:bg-primary-500 group-hover:text-white transition-colors">Try</span>
+              <span className="text-[11px] bg-purple-100 text-purple-700 px-2.5 py-1 rounded-lg font-bold group-hover:bg-purple-600 group-hover:text-white transition-colors">Try</span>
             </button>
 
             <button
               type="button"
               onClick={() => handleDemoLogin('client')}
-              className="w-full flex items-center justify-between p-3 rounded-2xl border border-neutral-200 hover:border-neutral-400 bg-neutral-50/70 hover:bg-white text-xs font-semibold text-neutral-800 transition-all cursor-pointer group shadow-2xs hover:shadow-xs active:scale-[0.99]"
+              className="w-full flex items-center justify-between p-3 rounded-2xl border border-emerald-200/80 hover:border-emerald-400 bg-emerald-50/40 hover:bg-white text-xs font-semibold text-neutral-800 transition-all cursor-pointer group shadow-2xs hover:shadow-xs active:scale-[0.99]"
             >
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-xl bg-neutral-200 text-neutral-700 flex items-center justify-center group-hover:bg-neutral-800 group-hover:text-white transition-colors">
+                <div className="w-8 h-8 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center group-hover:bg-emerald-600 group-hover:text-white transition-colors">
                   <User className="w-4 h-4" />
                 </div>
                 <div className="text-left">
-                  <div className="font-bold text-neutral-900 font-display">Tobi (Student Client)</div>
+                  <div className="font-bold text-neutral-900 group-hover:text-emerald-700 font-display">Tobi (Student Client)</div>
                   <div className="text-[10px] text-neutral-500 font-normal">Browsing, booking & PIN sharing</div>
                 </div>
               </div>
-              <span className="text-[11px] bg-neutral-100 text-neutral-700 px-2.5 py-1 rounded-lg font-bold group-hover:bg-neutral-800 group-hover:text-white transition-colors">Try</span>
+              <span className="text-[11px] bg-emerald-100 text-emerald-800 px-2.5 py-1 rounded-lg font-bold group-hover:bg-emerald-600 group-hover:text-white transition-colors">Try</span>
             </button>
 
             <button
@@ -231,7 +231,7 @@ export default function LoginPage() {
 
           <div className="mt-6 text-center text-xs text-neutral-500">
             Don't have an account yet?{' '}
-            <Link to="/register" className="font-bold text-primary-600 hover:text-primary-700">
+            <Link to="/register" className="font-bold text-purple-600 hover:text-purple-700">
               Create an account
             </Link>
           </div>

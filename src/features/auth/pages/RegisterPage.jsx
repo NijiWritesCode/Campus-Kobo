@@ -97,7 +97,7 @@ export default function RegisterPage() {
               onClick={() => setSelectedRole(USER_ROLES.CLIENT)}
               className={`py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer ${
                 selectedRole === USER_ROLES.CLIENT
-                  ? 'bg-white text-neutral-900 shadow-xs'
+                  ? 'bg-purple-600 text-white shadow-xs'
                   : 'text-neutral-500 hover:text-neutral-900'
               }`}
             >
@@ -108,7 +108,7 @@ export default function RegisterPage() {
               onClick={() => setSelectedRole(USER_ROLES.PROVIDER)}
               className={`py-2.5 text-xs font-bold rounded-xl transition-all cursor-pointer ${
                 selectedRole === USER_ROLES.PROVIDER
-                  ? 'bg-primary-500 text-white shadow-xs'
+                  ? 'bg-emerald-600 text-white shadow-xs'
                   : 'text-neutral-500 hover:text-neutral-900'
               }`}
             >

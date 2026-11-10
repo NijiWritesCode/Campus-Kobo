@@ -98,8 +98,8 @@ export default function DesignSystemShowcase() {
           <Card variant="elevated" padding="md" className="space-y-4">
             <h3 className="font-bold text-sm text-neutral-900 font-display">3. Badge Component Variants</h3>
             <div className="flex flex-wrap gap-2">
-              <Badge variant="primary" dot>Primary Orange</Badge>
-              <Badge variant="secondary" dot>Secondary Trust</Badge>
+              <Badge variant="primary" dot>Primary Emerald</Badge>
+              <Badge variant="secondary" dot>Secondary Purple</Badge>
               <Badge variant="success" dot>Confirmed</Badge>
               <Badge variant="warning" dot>Awaiting Provider</Badge>
               <Badge variant="error" dot>Declined / Dispute</Badge>

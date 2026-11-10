@@ -19,9 +19,13 @@ export default function Button({
 
   const variants = {
     primary:
-      'bg-primary-600 hover:bg-primary-500 text-white shadow-[0_2px_10px_rgba(234,88,12,0.25),inset_0_1px_0_0_rgba(255,255,255,0.2)] focus-visible:ring-primary-500 active:bg-primary-700 font-semibold',
+      'bg-primary-600 hover:bg-primary-500 text-white shadow-[0_2px_10px_rgba(5,150,105,0.25),inset_0_1px_0_0_rgba(255,255,255,0.2)] focus-visible:ring-primary-500 active:bg-primary-700 font-semibold',
     secondary:
-      'bg-secondary-600 hover:bg-secondary-500 text-white shadow-[0_2px_10px_rgba(5,150,105,0.25),inset_0_1px_0_0_rgba(255,255,255,0.2)] focus-visible:ring-secondary-500 active:bg-secondary-700 font-semibold',
+      'bg-secondary-600 hover:bg-secondary-500 text-white shadow-[0_2px_10px_rgba(124,58,237,0.25),inset_0_1px_0_0_rgba(255,255,255,0.2)] focus-visible:ring-secondary-500 active:bg-secondary-700 font-semibold',
+    purple:
+      'bg-purple-600 hover:bg-purple-500 text-white shadow-[0_2px_10px_rgba(124,58,237,0.25),inset_0_1px_0_0_rgba(255,255,255,0.2)] focus-visible:ring-purple-500 active:bg-purple-700 font-semibold',
+    emerald:
+      'bg-emerald-600 hover:bg-emerald-500 text-white shadow-[0_2px_10px_rgba(5,150,105,0.25),inset_0_1px_0_0_rgba(255,255,255,0.2)] focus-visible:ring-emerald-500 active:bg-emerald-700 font-semibold',
     outline:
       'border border-neutral-200 hover:border-neutral-300 bg-white hover:bg-neutral-50/80 text-neutral-800 shadow-2xs focus-visible:ring-neutral-400 font-medium',
     ghost:

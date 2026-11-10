@@ -57,7 +57,7 @@ export default function BottomNav({ variant = 'client' }) {
                       className={cn(
                         'relative p-1 rounded-full transition-all duration-200',
                         isActive
-                          ? 'bg-primary-500 text-white shadow-[0_0_12px_rgba(249,115,22,0.6)] scale-105'
+                          ? 'bg-primary-600 text-white shadow-[0_0_14px_rgba(16,185,129,0.7)] scale-105'
                           : ''
                       )}
                     >

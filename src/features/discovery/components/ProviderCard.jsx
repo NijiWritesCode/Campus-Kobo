@@ -32,7 +32,7 @@ export default function ProviderCard({
           {/* Top badges */}
           <div className="absolute top-2.5 left-2.5 flex flex-wrap gap-1.5">
             {provider.verified && (
-              <span className="inline-flex items-center gap-1 bg-white/90 backdrop-blur-md text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full shadow-2xs">
+              <span className="inline-flex items-center gap-1 bg-white/95 backdrop-blur-md text-emerald-800 text-[10px] font-bold px-2 py-0.5 rounded-full shadow-2xs">
                 <ShieldCheck className="w-3 h-3 text-emerald-600" />
                 <span>Verified</span>
               </span>
@@ -40,9 +40,9 @@ export default function ProviderCard({
             {provider.badges?.slice(0, 1).map((b) => (
               <Badge
                 key={b}
-                variant="primary"
+                variant="secondary"
                 size="sm"
-                className="bg-primary-500 text-white border-none shadow-xs text-[10px] font-semibold"
+                className="bg-purple-600 text-white border-none shadow-xs text-[10px] font-semibold"
               >
                 {b}
               </Badge>

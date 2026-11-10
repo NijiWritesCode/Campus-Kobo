@@ -77,7 +77,7 @@ export default function WelcomePage() {
             <Link to="/register">
               <AnimatedGradientText className="cursor-pointer hover:scale-[1.02] transition-transform">
                 <span className="flex items-center gap-1.5">
-                  <Sparkles className="w-3.5 h-3.5 text-primary-500" />
+                  <Sparkles className="w-3.5 h-3.5 text-purple-600" />
                   <span>Exclusive Student Service Network • UNILAG Pilot</span>
                   <ArrowRight className="w-3 h-3 text-neutral-400 group-hover:translate-x-0.5 transition-transform" />
                 </span>
@@ -86,10 +86,10 @@ export default function WelcomePage() {
 
             <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-neutral-900 font-display leading-[1.12]">
               Book verified student talent on your{' '}
-              <span className="relative inline-block text-primary-600">
+              <span className="relative inline-block text-transparent bg-clip-text bg-gradient-to-r from-purple-600 via-teal-600 to-emerald-600">
                 campus
                 <svg
-                  className="absolute -bottom-1 left-0 w-full h-2.5 text-primary-500/30"
+                  className="absolute -bottom-1 left-0 w-full h-2.5 text-emerald-500/40"
                   viewBox="0 0 100 20"
                   preserveAspectRatio="none"
                 >
@@ -109,7 +109,7 @@ export default function WelcomePage() {
                   variant="primary"
                   size="lg"
                   fullWidth
-                  className="shadow-lg shadow-primary-500/25 hover:shadow-primary-500/35"
+                  className="shadow-lg shadow-emerald-600/25 hover:shadow-emerald-600/35"
                   icon={<ArrowRight className="w-4 h-4" />}
                   iconPosition="right"
                 >
@@ -117,22 +117,27 @@ export default function WelcomePage() {
                 </Button>
               </Link>
               <Link to="/register?role=provider" className="w-full sm:w-auto">
-                <Button variant="outline" size="lg" fullWidth className="bg-white/80 backdrop-blur-xs">
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  fullWidth
+                  className="shadow-lg shadow-purple-600/25 hover:shadow-purple-600/35"
+                >
                   Become a Student Provider
                 </Button>
               </Link>
             </div>
 
-            <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 pt-3 text-xs font-semibold text-neutral-600">
-              <div className="flex items-center gap-1.5 bg-white/80 backdrop-blur-xs px-3 py-1.5 rounded-full border border-neutral-200/80 shadow-2xs">
+            <div className="flex flex-wrap items-center justify-center gap-3 sm:gap-4 pt-3 text-xs font-semibold text-neutral-600">
+              <div className="flex items-center gap-1.5 bg-white/80 backdrop-blur-xs px-3 py-1.5 rounded-full border border-emerald-200/80 shadow-2xs text-emerald-800">
                 <ShieldCheck className="w-4 h-4 text-emerald-600" />
                 <span>100% Student Verified</span>
               </div>
-              <div className="flex items-center gap-1.5 bg-white/80 backdrop-blur-xs px-3 py-1.5 rounded-full border border-neutral-200/80 shadow-2xs">
-                <Sparkles className="w-4 h-4 text-primary-500" />
+              <div className="flex items-center gap-1.5 bg-white/80 backdrop-blur-xs px-3 py-1.5 rounded-full border border-purple-200/80 shadow-2xs text-purple-800">
+                <Sparkles className="w-4 h-4 text-purple-600" />
                 <span>Safe PIN Settlement</span>
               </div>
-              <div className="flex items-center gap-1.5 bg-white/80 backdrop-blur-xs px-3 py-1.5 rounded-full border border-neutral-200/80 shadow-2xs">
+              <div className="flex items-center gap-1.5 bg-white/80 backdrop-blur-xs px-3 py-1.5 rounded-full border border-neutral-200/80 shadow-2xs text-neutral-700">
                 <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
                 <span>Zero Cash Drama</span>
               </div>
@@ -157,28 +162,45 @@ export default function WelcomePage() {
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-              {INITIAL_SERVICE_CATEGORIES.map((cat) => (
-                <Link key={cat.id} to="/register">
-                  <SpotlightCard className="h-full p-5 flex flex-col justify-between group hover:-translate-y-0.5 transition-all">
-                    <div>
-                      <div className="w-11 h-11 rounded-2xl bg-primary-50 text-primary-600 flex items-center justify-center mb-3 group-hover:bg-primary-500 group-hover:text-white group-hover:scale-105 transition-all duration-200 shadow-2xs">
-                        <Scissors className="w-5 h-5" />
+              {INITIAL_SERVICE_CATEGORIES.map((cat, idx) => {
+                const isPurple = idx % 2 === 0;
+                return (
+                  <Link key={cat.id} to="/register">
+                    <SpotlightCard className="h-full p-5 flex flex-col justify-between group hover:-translate-y-0.5 transition-all">
+                      <div>
+                        <div
+                          className={`w-11 h-11 rounded-2xl flex items-center justify-center mb-3 group-hover:scale-105 transition-all duration-200 shadow-2xs ${
+                            isPurple
+                              ? 'bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white'
+                              : 'bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white'
+                          }`}
+                        >
+                          <Scissors className="w-5 h-5" />
+                        </div>
+                        <h3
+                          className={`font-bold text-sm text-neutral-900 transition-colors font-display ${
+                            isPurple ? 'group-hover:text-purple-600' : 'group-hover:text-emerald-600'
+                          }`}
+                        >
+                          {cat.name}
+                        </h3>
+                        <p className="text-[11px] text-neutral-500 mt-1 line-clamp-2 leading-relaxed">
+                          {cat.description}
+                        </p>
                       </div>
-                      <h3 className="font-bold text-sm text-neutral-900 group-hover:text-primary-600 transition-colors font-display">
-                        {cat.name}
-                      </h3>
-                      <p className="text-[11px] text-neutral-500 mt-1 line-clamp-2 leading-relaxed">
-                        {cat.description}
-                      </p>
-                    </div>
 
-                    <div className="pt-3 mt-2 border-t border-neutral-100 flex items-center justify-between text-[11px] font-semibold text-neutral-400 group-hover:text-primary-600">
-                      <span>Book on campus</span>
-                      <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
-                    </div>
-                  </SpotlightCard>
-                </Link>
-              ))}
+                      <div
+                        className={`pt-3 mt-2 border-t border-neutral-100 flex items-center justify-between text-[11px] font-semibold text-neutral-400 ${
+                          isPurple ? 'group-hover:text-purple-600' : 'group-hover:text-emerald-600'
+                        }`}
+                      >
+                        <span>Book on campus</span>
+                        <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+                      </div>
+                    </SpotlightCard>
+                  </Link>
+                );
+              })}
             </div>
           </section>
 
@@ -197,31 +219,35 @@ export default function WelcomePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-2">
-              {steps.map((st) => (
-                <SpotlightCard key={st.step} className="p-6 space-y-3 bg-neutral-50/60">
-                  <div className="flex items-center justify-between">
-                    <div className="w-11 h-11 rounded-2xl bg-white shadow-2xs flex items-center justify-center border border-neutral-200/80">
-                      {st.icon}
+              {steps.map((st, idx) => {
+                const isPurple = idx === 1;
+                return (
+                  <SpotlightCard key={st.step} className="p-6 space-y-3 bg-neutral-50/60">
+                    <div className="flex items-center justify-between">
+                      <div className="w-11 h-11 rounded-2xl bg-white shadow-2xs flex items-center justify-center border border-neutral-200/80">
+                        {st.icon}
+                      </div>
+                      <span className={`text-xs font-black font-display ${isPurple ? 'text-purple-400' : 'text-emerald-400'}`}>
+                        {st.step}
+                      </span>
                     </div>
-                    <span className="text-xs font-black text-neutral-300 font-display">
-                      {st.step}
-                    </span>
-                  </div>
-                  <h3 className="font-bold text-sm text-neutral-900 font-display">{st.title}</h3>
-                  <p className="text-xs text-neutral-600 leading-relaxed font-normal">
-                    {st.description}
-                  </p>
-                </SpotlightCard>
-              ))}
+                    <h3 className="font-bold text-sm text-neutral-900 font-display">{st.title}</h3>
+                    <p className="text-xs text-neutral-600 leading-relaxed font-normal">
+                      {st.description}
+                    </p>
+                  </SpotlightCard>
+                );
+              })}
             </div>
           </section>
 
           {/* Trust Signals & Campus Boundary */}
-          <section className="rounded-3xl bg-neutral-900 text-white p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-80 h-80 bg-primary-500/10 rounded-full blur-3xl pointer-events-none" />
+          <section className="rounded-3xl bg-neutral-900 text-white p-6 sm:p-10 flex flex-col md:flex-row items-center justify-between gap-8 shadow-xl relative overflow-hidden border border-neutral-800">
+            <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/15 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-0 left-0 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
 
             <div className="space-y-4 max-w-md text-center md:text-left relative z-10">
-              <Badge variant="primary" size="sm">
+              <Badge variant="secondary" size="sm" dot>
                 Campus Security
               </Badge>
               <h2 className="text-2xl sm:text-3xl font-bold font-display tracking-tight text-white">
@@ -243,8 +269,8 @@ export default function WelcomePage() {
               </ul>
             </div>
 
-            <div className="w-full md:w-auto text-center p-6 sm:p-8 rounded-3xl bg-neutral-800/90 border border-neutral-700/80 space-y-4 relative z-10 shadow-lg">
-              <div className="w-12 h-12 rounded-2xl bg-primary-500/15 text-primary-400 flex items-center justify-center mx-auto">
+            <div className="w-full md:w-auto text-center p-6 sm:p-8 rounded-3xl bg-neutral-800/90 border border-purple-800/60 space-y-4 relative z-10 shadow-lg">
+              <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-500/20 to-emerald-500/20 text-purple-400 flex items-center justify-center mx-auto border border-purple-500/30">
                 <Users className="w-6 h-6" />
               </div>
               <div>
@@ -256,7 +282,7 @@ export default function WelcomePage() {
                 </p>
               </div>
               <Link to="/register" className="block">
-                <Button variant="primary" size="md" fullWidth className="shadow-md shadow-primary-500/30">
+                <Button variant="primary" size="md" fullWidth className="shadow-md shadow-emerald-500/30">
                   Join Your Campus Cohort
                 </Button>
               </Link>

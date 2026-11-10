@@ -34,24 +34,27 @@ export default function HomePage() {
   return (
     <div className="space-y-12 pb-8">
       {/* Hero Greeting & Search Header */}
-      <section className="relative rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-white via-primary-50/20 to-neutral-50 border border-neutral-200/80 shadow-xs overflow-hidden">
+      <section className="relative rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-white via-purple-50/25 to-emerald-50/25 border border-neutral-200/80 shadow-xs overflow-hidden">
         {/* Soft background ambient gradient */}
-        <div className="absolute top-0 right-0 w-72 h-72 bg-primary-400/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 bg-gradient-to-bl from-purple-500/15 via-emerald-400/10 to-transparent rounded-full blur-3xl pointer-events-none" />
 
         <div className="relative z-10 max-w-2xl space-y-4">
           <div className="flex flex-wrap items-center gap-2">
-            <Badge variant="primary" size="sm" dot>
+            <Badge variant="secondary" size="sm" dot>
               UNILAG Campus Pilot
             </Badge>
-            <div className="hidden xs:flex items-center gap-1 text-[11px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200/60">
-              <ShieldCheck className="w-3 h-3 text-emerald-600" />
+            <div className="hidden xs:flex items-center gap-1 text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200/80">
+              <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
               <span>Hostel-Verified Providers</span>
             </div>
           </div>
 
           <div className="space-y-1.5">
             <h1 className="text-2xl sm:text-4xl font-extrabold tracking-tight text-neutral-900 font-display leading-tight">
-              Book student talent on campus
+              Book student talent on{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-600 to-emerald-600">
+                campus
+              </span>
             </h1>
             <p className="text-xs sm:text-base text-neutral-600 font-normal leading-relaxed">
               Find hairstylists, nail techs, barbers, and makeup artists right in your hostels. Transparent prices and escrow PIN safety.
@@ -70,19 +73,26 @@ export default function HomePage() {
           {/* Quick search tags */}
           <div className="flex items-center gap-1.5 pt-1 overflow-x-auto pb-1 scrollbar-none text-xs">
             <span className="text-[11px] font-semibold text-neutral-400 flex items-center gap-1 shrink-0">
-              <Zap className="w-3 h-3 text-amber-500" />
+              <Zap className="w-3 h-3 text-purple-500" />
               <span>Popular:</span>
             </span>
-            {QUICK_TAGS.map((tag) => (
-              <button
-                key={tag}
-                type="button"
-                onClick={() => handleSearchSubmit(tag)}
-                className="shrink-0 px-2.5 py-1 rounded-lg bg-white/90 hover:bg-neutral-100 text-neutral-700 text-[11px] font-medium border border-neutral-200/80 hover:border-neutral-300 transition-all cursor-pointer shadow-2xs"
-              >
-                {tag}
-              </button>
-            ))}
+            {QUICK_TAGS.map((tag, idx) => {
+              const isPurple = idx % 2 === 0;
+              return (
+                <button
+                  key={tag}
+                  type="button"
+                  onClick={() => handleSearchSubmit(tag)}
+                  className={`shrink-0 px-2.5 py-1 rounded-lg bg-white/90 text-neutral-700 text-[11px] font-medium border border-neutral-200/80 transition-all cursor-pointer shadow-2xs ${
+                    isPurple
+                      ? 'hover:border-purple-300 hover:text-purple-700 hover:bg-purple-50/50'
+                      : 'hover:border-emerald-300 hover:text-emerald-700 hover:bg-emerald-50/50'
+                  }`}
+                >
+                  {tag}
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -95,7 +105,8 @@ export default function HomePage() {
 
       {/* Campus Trust Banner */}
       <section className="rounded-3xl bg-neutral-900 text-white p-6 sm:p-9 flex flex-col md:flex-row items-center justify-between gap-6 shadow-xl relative overflow-hidden border border-neutral-800">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 w-80 h-80 bg-purple-500/15 rounded-full blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-0 w-80 h-80 bg-emerald-500/15 rounded-full blur-3xl pointer-events-none" />
 
         <div className="space-y-2.5 max-w-lg text-center md:text-left relative z-10">
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-950/80 text-emerald-400 text-xs font-bold border border-emerald-800/80">
@@ -117,7 +128,7 @@ export default function HomePage() {
             onClick={() => navigate('/app/search')}
             icon={<ArrowRight className="w-4 h-4" />}
             iconPosition="right"
-            className="shadow-md shadow-primary-500/30"
+            className="shadow-md shadow-emerald-500/30"
           >
             Explore Listings
           </Button>

@@ -47,24 +47,35 @@ export default function CategoryGrid({ showHeader = true }) {
       )}
 
       <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 sm:gap-4">
-        {categories.map((cat) => {
+        {categories.map((cat, idx) => {
           const Icon = CATEGORY_ICONS[cat.icon] || Sparkles;
+          const isPurple = idx % 2 === 0;
           return (
             <Link key={cat.id} to={`/app/categories/${cat.slug}`}>
               <SpotlightCard className="h-full p-4 sm:p-5 flex flex-col justify-between group relative overflow-hidden transition-all duration-300 hover:-translate-y-0.5">
                 {cat.badge && (
                   <div className="absolute top-2.5 right-2.5">
-                    <Badge variant="primary" size="sm" className="text-[10px]">
+                    <Badge variant={isPurple ? 'secondary' : 'primary'} size="sm" className="text-[10px]">
                       {cat.badge}
                     </Badge>
                   </div>
                 )}
 
                 <div>
-                  <div className="w-11 h-11 rounded-2xl bg-primary-50 text-primary-600 flex items-center justify-center mb-3 group-hover:bg-primary-500 group-hover:text-white group-hover:scale-105 transition-all duration-200 shadow-2xs">
+                  <div
+                    className={`w-11 h-11 rounded-2xl flex items-center justify-center mb-3 group-hover:scale-105 transition-all duration-200 shadow-2xs ${
+                      isPurple
+                        ? 'bg-purple-50 text-purple-600 group-hover:bg-purple-600 group-hover:text-white'
+                        : 'bg-emerald-50 text-emerald-600 group-hover:bg-emerald-600 group-hover:text-white'
+                    }`}
+                  >
                     <Icon className="w-5 h-5" />
                   </div>
-                  <h3 className="font-bold text-sm text-neutral-900 group-hover:text-primary-600 transition-colors font-display">
+                  <h3
+                    className={`font-bold text-sm text-neutral-900 transition-colors font-display ${
+                      isPurple ? 'group-hover:text-purple-600' : 'group-hover:text-emerald-600'
+                    }`}
+                  >
                     {cat.name}
                   </h3>
                   <p className="text-[11px] text-neutral-500 mt-1 line-clamp-2 leading-relaxed">
@@ -74,7 +85,11 @@ export default function CategoryGrid({ showHeader = true }) {
 
                 <div className="pt-3 mt-2 border-t border-neutral-100 flex items-center justify-between text-[11px] font-semibold text-neutral-400 group-hover:text-neutral-700">
                   <span>{cat.providerCount} student providers</span>
-                  <ChevronRight className="w-3.5 h-3.5 text-neutral-300 group-hover:text-primary-600 group-hover:translate-x-0.5 transition-all" />
+                  <ChevronRight
+                    className={`w-3.5 h-3.5 text-neutral-300 group-hover:translate-x-0.5 transition-all ${
+                      isPurple ? 'group-hover:text-purple-600' : 'group-hover:text-emerald-600'
+                    }`}
+                  />
                 </div>
               </SpotlightCard>
             </Link>

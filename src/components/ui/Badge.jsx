@@ -9,8 +9,10 @@ export default function Badge({
   ...props
 }) {
   const variants = {
-    primary: 'bg-primary-50/90 text-primary-700 border-primary-200/90',
-    secondary: 'bg-secondary-50/90 text-secondary-700 border-secondary-200/90',
+    primary: 'bg-primary-50/90 text-primary-800 border-primary-200/90',
+    secondary: 'bg-secondary-50/90 text-secondary-800 border-secondary-200/90',
+    purple: 'bg-purple-50/90 text-purple-800 border-purple-200/90',
+    emerald: 'bg-emerald-50/90 text-emerald-800 border-emerald-200/90',
     success: 'bg-emerald-50 text-emerald-700 border-emerald-200',
     warning: 'bg-amber-50 text-amber-700 border-amber-200',
     error: 'bg-rose-50 text-rose-700 border-rose-200',
@@ -20,8 +22,10 @@ export default function Badge({
   };
 
   const dotColors = {
-    primary: 'bg-primary-500 shadow-[0_0_6px_rgba(249,115,22,0.6)]',
-    secondary: 'bg-secondary-500 shadow-[0_0_6px_rgba(16,185,129,0.6)]',
+    primary: 'bg-primary-500 shadow-[0_0_6px_rgba(16,185,129,0.6)]',
+    secondary: 'bg-secondary-500 shadow-[0_0_6px_rgba(124,58,237,0.6)]',
+    purple: 'bg-purple-500 shadow-[0_0_6px_rgba(124,58,237,0.6)]',
+    emerald: 'bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.6)]',
     success: 'bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.6)]',
     warning: 'bg-amber-500 shadow-[0_0_6px_rgba(245,158,11,0.6)]',
     error: 'bg-rose-500 shadow-[0_0_6px_rgba(244,63,94,0.6)]',

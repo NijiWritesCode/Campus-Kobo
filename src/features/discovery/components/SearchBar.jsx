@@ -22,7 +22,7 @@ export default function SearchBar({
     >
       <div className="relative flex items-center">
         <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none text-neutral-400">
-          <Search className="w-4 h-4 text-primary-500" />
+          <Search className="w-4 h-4 text-emerald-600" />
         </div>
 
         <input
@@ -34,7 +34,7 @@ export default function SearchBar({
           enterKeyHint="search"
           autoComplete="off"
           spellCheck="false"
-          className="w-full pl-11 pr-11 py-3.5 rounded-2xl bg-white border border-neutral-200/90 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-primary-500 focus:ring-4 focus:ring-primary-500/15 shadow-xs transition-all duration-200"
+          className="w-full pl-11 pr-11 py-3.5 rounded-2xl bg-white border border-neutral-200/90 text-sm text-neutral-900 placeholder:text-neutral-400 focus:outline-none focus:border-emerald-500 focus:ring-4 focus:ring-emerald-500/15 shadow-xs transition-all duration-200"
         />
 
         {value && (
