@@ -46,7 +46,7 @@ export default function HomePage() {
             </div>
           </div>
 
-          <h1 className="text-xl sm:text-2xl font-bold tracking-tight text-neutral-900 font-display">
+          <h1 className="text-2xl sm:text-3xl font-extrabold tracking-tight text-neutral-900 font-display">
             Find student services on campus
           </h1>
           <p className="text-xs sm:text-sm text-neutral-600">
