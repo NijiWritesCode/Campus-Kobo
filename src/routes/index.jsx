@@ -28,6 +28,17 @@ import CompletionPinPage from '@/features/booking/pages/CompletionPinPage';
 import ProfilePage from '@/features/client-profile/pages/ProfilePage';
 import NotificationsPage from '@/features/notifications/pages/NotificationsPage';
 
+// Provider Dashboard Surface Pages (Phase 5)
+import ProviderDashboard from '@/features/provider-dashboard/pages/ProviderDashboard';
+import ProviderProfileManagement from '@/features/provider-dashboard/pages/ProviderProfileManagement';
+import ServiceManagement from '@/features/provider-dashboard/pages/ServiceManagement';
+import CreateService from '@/features/provider-dashboard/pages/CreateService';
+import EditService from '@/features/provider-dashboard/pages/EditService';
+import AvailabilityManagement from '@/features/provider-dashboard/pages/AvailabilityManagement';
+import ProviderBookings from '@/features/provider-dashboard/pages/ProviderBookings';
+import ProviderBookingDetail from '@/features/provider-dashboard/pages/ProviderBookingDetail';
+import EarningsPage from '@/features/provider-dashboard/pages/EarningsPage';
+
 export const router = createBrowserRouter([
   // Public Landing & Authentication routes
   { path: '/', element: <WelcomePage /> },
@@ -71,42 +82,15 @@ export const router = createBrowserRouter([
       </ProtectedRoute>
     ),
     children: [
-      {
-        index: true,
-        element: (
-          <div className="py-8 text-center space-y-2">
-            <h2 className="text-xl font-bold font-display">Provider Dashboard</h2>
-            <p className="text-xs text-neutral-500">Coming in Phase 5: Provider Dashboard & Services</p>
-          </div>
-        ),
-      },
-      {
-        path: 'services',
-        element: (
-          <div className="py-8 text-center space-y-2">
-            <h2 className="text-xl font-bold font-display">Service Management</h2>
-            <p className="text-xs text-neutral-500">Coming in Phase 5</p>
-          </div>
-        ),
-      },
-      {
-        path: 'bookings',
-        element: (
-          <div className="py-8 text-center space-y-2">
-            <h2 className="text-xl font-bold font-display">Provider Bookings & PIN Input</h2>
-            <p className="text-xs text-neutral-500">Coming in Phase 5</p>
-          </div>
-        ),
-      },
-      {
-        path: 'earnings',
-        element: (
-          <div className="py-8 text-center space-y-2">
-            <h2 className="text-xl font-bold font-display">Provider Earnings & Payouts</h2>
-            <p className="text-xs text-neutral-500">Coming in Phase 5</p>
-          </div>
-        ),
-      },
+      { index: true, element: <ProviderDashboard /> },
+      { path: 'profile', element: <ProviderProfileManagement /> },
+      { path: 'services', element: <ServiceManagement /> },
+      { path: 'services/new', element: <CreateService /> },
+      { path: 'services/:serviceId/edit', element: <EditService /> },
+      { path: 'availability', element: <AvailabilityManagement /> },
+      { path: 'bookings', element: <ProviderBookings /> },
+      { path: 'bookings/:bookingId', element: <ProviderBookingDetail /> },
+      { path: 'earnings', element: <EarningsPage /> },
     ],
   },
 
